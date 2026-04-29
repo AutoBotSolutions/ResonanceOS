@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unit_tests.py - ResonanceOS v6 Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .code-block {
+            background: rgba(22, 33, 62, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .class-signature {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .method-signature {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .string-literal {
+            color: var(--success-color);
+        }
+        
+        .comment {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .keyword {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .testing-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .feature-title {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .test-workflow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(22, 33, 62, 0.5);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .workflow-step {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 350px;
+        }
+        
+        .step-title {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .flow-arrow {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .test-classes {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .class-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--success-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .class-name {
+            font-family: var(--font-primary);
+            color: var(--success-color);
+            margin-bottom: 8px;
+        }
+        
+        .class-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .testing-patterns {
+            background: rgba(255, 0, 255, 0.05);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .pattern-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .pattern-name {
+            font-family: var(--font-primary);
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+        
+        .pattern-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .mocking-examples {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid var(--warning-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .mock-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .mock-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--warning-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .mock-name {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            color: var(--warning-color);
+            margin-bottom: 10px;
+        }
+        
+        .mock-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .performance-testing {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .metric-name {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .metric-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .integration-testing {
+            background: rgba(255, 0, 102, 0.1);
+            border: 1px solid var(--danger-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .integration-workflows {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .workflow-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--danger-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .workflow-number {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--danger-color);
+            margin-bottom: 8px;
+        }
+        
+        .workflow-description {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        
+        .best-practices {
+            background: rgba(255, 255, 0, 0.1);
+            border: 1px solid var(--warning-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .practice-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .practice-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--warning-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .practice-icon {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--warning-color);
+            margin-bottom: 10px;
+        }
+        
+        .practice-text {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background"></div>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="neural-logo">
+                    <div class="core"></div>
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h1 class="main-title">UNIT_<span class="highlight">TESTS.PY</span></h1>
+            </div>
+            <div class="subtitle">Comprehensive Unit Testing Framework</div>
+            <div class="version-tag">TESTING v1.0</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb">← Return to Neural Interface</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="module-overview">
+                <h2 class="section-title">Unit Testing Framework Thesis</h2>
+                <div class="thesis-content">
+                    <p class="thesis-intro">
+                        The <strong>unit_tests.py</strong> module demonstrates comprehensive unit testing patterns for ResonanceOS v6, 
+                        including test structure, assertions, mocking, edge case handling, performance testing, and integration testing. 
+                        This advanced testing framework covers all major system components with detailed test cases for HRV extraction, 
+                        content generation, profile management, API integration, and error conditions - all designed to ensure 
+                        system reliability, maintainability, and code quality through systematic testing practices and comprehensive 
+                        test coverage.
+                    </p>
+                    
+                    <div class="tech-specs">
+                        <h3>Technical Specifications</h3>
+                        <ul>
+                            <li><strong>Framework:</strong> Python unittest with comprehensive test coverage</li>
+                            <li><strong>Components:</strong> HRVExtractor, HumanResonantWriter, ProfileManager, API Integration</li>
+                            <li><strong>Testing Types:</strong> Unit Tests, Integration Tests, Performance Tests, Edge Cases</li>
+                            <li><strong>Mocking:</strong> unittest.mock for isolation and controlled testing</li>
+                            <li><strong>Best Practices:</strong> setUp/tearDown, descriptive naming, comprehensive assertions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-implementation">
+                <h2 class="section-title">Testing Framework Architecture</h2>
+                
+                <div class="code-block">
+<span class="keyword">class</span> <span class="class-signature">TestHRVExtractor</span>(unittest.TestCase):
+    <span class="string-literal">"""Test cases for HRVExtractor class"""</span>
+    
+    <span class="keyword">def</span> <span class="method-signature">setUp</span>(self):
+        <span class="string-literal">"""Set up test fixtures"""</span>
+        self.extractor = HRVExtractor()
+        self.sample_text = <span class="string-literal">"This is a sample text for testing HRV extraction."</span>
+        self.empty_text = <span class="string-literal">""</span>
+        self.long_text = <span class="string-literal">"This is a very long text that contains multiple sentences. "</span> * <span class="number">10</span>
+    
+    <span class="keyword">def</span> <span class="method-signature">test_extract_basic</span>(self):
+        <span class="string-literal">"""Test basic HRV extraction"""</span>
+        result = self.extractor.extract(self.sample_text)
+        
+        <span class="comment"># Assertions</span>
+        self.assertIsInstance(result, list)
+        self.assertEqual(len(result), <span class="number">8</span>, <span class="string-literal">"HRV vector should have 8 dimensions"</span>)
+        
+        <span class="comment"># Check value ranges</span>
+        <span class="keyword">for</span> i, value <span class="keyword">in</span> enumerate(result):
+            self.assertIsInstance(value, (int, float), <span class="keyword">f</span><span class="string-literal">"Dimension {i} should be numeric"</span>)
+            self.assertTrue(<span class="number">0.0</span> <= value <= <span class="number">1.0</span>, <span class="keyword">f</span><span class="string-literal">"Dimension {i} should be between 0.0 and 1.0"</span>)
+    
+    <span class="keyword">def</span> <span class="method-signature">tearDown</span>(self):
+        <span class="string-literal">"""Clean up test fixtures"""</span>
+        <span class="keyword">pass</span>
+                </div>
+
+                <div class="testing-features">
+                    <div class="feature-card">
+                        <div class="feature-title">Comprehensive Coverage</div>
+                        <div class="feature-desc">
+                            Test all major system components with detailed assertions
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Mocking & Isolation</div>
+                        <div class="feature-desc">
+                            Use unittest.mock for controlled testing environments
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Edge Case Testing</div>
+                        <div class="feature-desc">
+                            Handle unicode, special characters, and boundary conditions
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Performance Testing</div>
+                        <div class="feature-desc">
+                            Measure execution time and performance benchmarks
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-workflow">
+                <h2 class="section-title">Testing Workflow</h2>
+                
+                <div class="test-workflow">
+                    <div class="workflow-step">
+                        <div class="step-title">1. Test Setup</div>
+                        <div class="step-desc">Initialize test fixtures and prepare test data</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="workflow-step">
+                        <div class="step-title">2. Test Execution</div>
+                        <div class="step-desc">Run test methods with controlled inputs</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="workflow-step">
+                        <div class="step-title">3. Assertion Validation</div>
+                        <div class="step-desc">Verify expected outcomes and behaviors</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="workflow-step">
+                        <div class="step-title">4. Cleanup</div>
+                        <div class="step-desc">Clean up resources and reset state</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-classes">
+                <h2 class="section-title">Test Class Structure</h2>
+                
+                <div class="test-classes">
+                    <h3>Comprehensive Test Coverage</h3>
+                    <div class="code-block">
+<span class="comment"># Test classes covering all major components</span>
+test_classes = [
+    TestHRVExtractor,           <span class="comment"># HRV vector extraction testing</span>
+    TestHumanResonantWriter,    <span class="comment"># Content generation testing</span>
+    TestHRVProfileManager,      <span class="comment"># Profile management testing</span>
+    TestAPIIntegration,         <span class="comment"># API endpoint testing</span>
+    TestEdgeCases,             <span class="comment"># Boundary condition testing</span>
+    TestPerformance,           <span class="comment"># Performance benchmarking</span>
+    TestIntegration            <span class="comment"># Component integration testing</span>
+]
+
+<span class="comment"># Run complete test suite</span>
+runner = unittest.TextTestRunner(verbosity=<span class="number">2</span>)
+result = runner.run(test_suite)
+                    </div>
+
+                    <div class="class-grid">
+                        <h4>Test Class Categories</h4>
+                        <div class="class-item">
+                            <div class="class-name">TestHRVExtractor</div>
+                            <div class="class-desc">HRV vector extraction and validation</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestHumanResonantWriter</div>
+                            <div class="class-desc">Content generation and quality</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestHRVProfileManager</div>
+                            <div class="class-desc">Profile storage and retrieval</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestAPIIntegration</div>
+                            <div class="class-desc">API request/response testing</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestEdgeCases</div>
+                            <div class="class-desc">Boundary and error conditions</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestPerformance</div>
+                            <div class="class-desc">Execution time and benchmarks</div>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-name">TestIntegration</div>
+                            <div class="class-desc">Multi-component workflows</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testing-patterns">
+                <h2 class="section-title">Testing Patterns & Methods</h2>
+                
+                <div class="testing-patterns">
+                    <h3>Core Testing Methodologies</h3>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">test_extract_consistency</span>(self):
+    <span class="string-literal">"""Test that extraction is consistent for same input"""</span>
+    print(<span class="string-literal">"🔬 Testing extraction consistency..."</span>)
+    
+    result1 = self.extractor.extract(self.sample_text)
+    result2 = self.extractor.extract(self.sample_text)
+    
+    <span class="comment"># Results should be identical</span>
+    self.assertEqual(result1, result2, <span class="string-literal">"Extraction should be consistent"</span>)
+    
+    print(<span class="string-literal">"✅ Consistency test passed"</span>)
+
+<span class="keyword">def</span> <span class="method-signature">test_extract_different_inputs</span>(self):
+    <span class="string-literal">"""Test extraction with different types of text"""</span>
+    print(<span class="string-literal">"🔬 Testing different text types..."</span>)
+    
+    texts = [
+        <span class="string-literal">"Formal business communication with professional tone."</span>,
+        <span class="string-literal">"Exciting! Amazing! Wonderful! Lots of emotion here!"</span>,
+        <span class="string-literal">"Question? What about curiosity? How does this work?"</span>,
+        <span class="string-literal">"Once upon a time, in a magical forest far away..."</span>
+    ]
+    
+    <span class="keyword">for</span> text <span class="keyword">in</span> texts:
+        result = self.extractor.extract(text)
+        self.assertEqual(len(result), <span class="number">8</span>)
+        self.assertIsInstance(result, list)
+    
+    print(<span class="string-literal">"✅ Different text types test passed"</span>)
+                    </div>
+
+                    <div class="pattern-grid">
+                        <h4>Testing Patterns</h4>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Consistency Testing</div>
+                            <div class="pattern-desc">Verify identical inputs produce identical outputs</div>
+                        </div>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Variation Testing</div>
+                            <div class="pattern-desc">Test with different input types and formats</div>
+                        </div>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Boundary Testing</div>
+                            <div class="pattern-desc">Test edge cases and limit conditions</div>
+                        </div>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Error Testing</div>
+                            <div class="pattern-desc">Verify proper error handling and responses</div>
+                        </div>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Performance Testing</div>
+                            <div class="pattern-desc">Measure execution time and resource usage</div>
+                        </div>
+                        <div class="pattern-item">
+                            <div class="pattern-name">Integration Testing</div>
+                            <div class="pattern-desc">Test component interactions and workflows</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mocking-examples">
+                <h2 class="section-title">Mocking & Test Isolation</h2>
+                
+                <div class="mocking-examples">
+                    <h3>Controlled Testing Environments</h3>
+                    <div class="code-block">
+<span class="keyword">from</span> unittest.mock <span class="keyword">import</span> Mock, patch, MagicMock
+
+<span class="keyword">def</span> <span class="method-signature">test_generate_with_mock</span>(self, mock_generate):
+    <span class="string-literal">"""Test generation with mocked internal method"""</span>
+    print(<span class="string-literal">"🔬 Testing with mocked generation..."</span>)
+    
+    <span class="comment"># Set up mock</span>
+    mock_generate.return_value = <span class="string-literal">"Mocked generated content"</span>
+    
+    result = self.writer.generate(self.sample_prompt)
+    
+    <span class="comment"># Verify mock was called</span>
+    mock_generate.assert_called_once_with(self.sample_prompt)
+    self.assertEqual(result, <span class="string-literal">"Mocked generated content"</span>)
+    
+    print(<span class="string-literal">"✅ Mock generation test passed"</span>)
+
+<span class="keyword">@patch</span>(<span class="string-literal">'resonance_os.generation.human_resonant_writer.HumanResonantWriter.generate'</span>)
+<span class="keyword">def</span> <span class="method-signature">test_hr_generate_with_mock</span>(self, mock_generate):
+    <span class="string-literal">"""Test hr_generate function with mocked writer"""</span>
+    
+    <span class="comment"># Set up mock</span>
+    mock_generate.return_value = <span class="string-literal">"Generated content for testing"</span>
+    
+    <span class="comment"># Call function</span>
+    result = hr_generate(self.sample_request)
+    
+    <span class="comment"># Verify</span>
+    self.assertIsNotNone(result)
+    self.assertEqual(result.article, <span class="string-literal">"Generated content for testing"</span>)
+    mock_generate.assert_called_once_with(self.sample_request.prompt)
+                    </div>
+
+                    <div class="mock-types">
+                        <h4>Mocking Techniques</h4>
+                        <div class="mock-card">
+                            <div class="mock-name">Mock</div>
+                            <div class="mock-desc">Basic mock object for simple replacements</div>
+                        </div>
+                        <div class="mock-card">
+                            <div class="mock-name">Patch</div>
+                            <div class="mock-desc">Replace objects during test execution</div>
+                        </div>
+                        <div class="mock-card">
+                            <div class="mock-name">MagicMock</div>
+                            <div class="mock-desc">Advanced mock with automatic attribute creation</div>
+                        </div>
+                        <div class="mock-card">
+                            <div class="mock-name">Side Effects</div>
+                            <div class="mock-desc">Control mock behavior with side_effect</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="edge-case-testing">
+                <h2 class="section-title">Edge Case & Error Testing</h2>
+                
+                <div class="edge-case-demo">
+                    <h3>Boundary Condition Testing</h3>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">test_unicode_text</span>(self):
+    <span class="string-literal">"""Test handling of unicode text"""</span>
+    print(<span class="string-literal">"🔬 Testing unicode text handling..."</span>)
+    
+    unicode_text = <span class="string-literal">"测试中文文本 ▶️ ñiño café résumé"</span>
+    
+    <span class="comment"># Should not raise an exception</span>
+    result = self.extractor.extract(unicode_text)
+    self.assertEqual(len(result), <span class="number">8</span>)
+    
+    print(<span class="string-literal">"✅ Unicode text test passed"</span>)
+
+<span class="keyword">def</span> <span class="method-signature">test_very_long_text</span>(self):
+    <span class="string-literal">"""Test handling of very long text"""</span>
+    print(<span class="string-literal">"🔬 Testing very long text..."</span>)
+    
+    long_text = <span class="string-literal">"This is a sentence. "</span> * <span class="number">1000</span>  <span class="comment"># Very long text</span>
+    
+    <span class="comment"># Should handle without issues</span>
+    result = self.extractor.extract(long_text)
+    self.assertEqual(len(result), <span class="number">8</span>)
+    
+    print(<span class="string-literal">"✅ Very long text test passed"</span>)
+
+<span class="keyword">def</span> <span class="method-signature">test_load_nonexistent_profile</span>(self):
+    <span class="string-literal">"""Test loading a profile that doesn't exist"""</span>
+    print(<span class="string-literal">"🔬 Testing nonexistent profile handling..."</span>)
+    
+    <span class="keyword">with</span> self.assertRaises(FileNotFoundError):
+        self.manager.load_profile(self.tenant, <span class="string-literal">"nonexistent_profile"</span>)
+    
+    print(<span class="string-literal">"✅ Nonexistent profile test passed"</span>)
+                    </div>
+
+                    <div class="edge-case-types">
+                        <h4>Edge Case Categories</h4>
+                        <div class="edge-grid">
+                            <div class="edge-item">
+                                <h5>Unicode Text</h5>
+                                <p>Chinese characters, emojis, accented characters</p>
+                            </div>
+                            <div class="edge-item">
+                                <h5>Very Long Text</h5>
+                                <p>Large input strings and memory limits</p>
+                            </div>
+                            <div class="edge-item">
+                                <h5>Special Characters</h5>
+                                <p>Punctuation, symbols, and control characters</p>
+                            </div>
+                            <div class="edge-item">
+                                <h5>Empty/Null Input</h5>
+                                <p>Empty strings and missing parameters</p>
+                            </div>
+                            <div class="edge-item">
+                                <h5>Invalid Data</h5>
+                                <p>Malformed inputs and type errors</p>
+                            </div>
+                            <div class="edge-item">
+                                <h5>File System Errors</h5>
+                                <p>Missing files and permission issues</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="performance-testing">
+                <h2 class="section-title">Performance Testing</h2>
+                
+                <div class="performance-testing">
+                    <h3>Execution Time & Benchmarks</h3>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">test_extraction_performance</span>(self):
+    <span class="string-literal">"""Test HRV extraction performance"""</span>
+    print(<span class="string-literal">"🔬 Testing extraction performance..."</span>)
+    
+    <span class="keyword">import</span> time
+    
+    test_text = <span class="string-literal">"This is a performance test text. "</span> * <span class="number">50</span>
+    
+    <span class="comment"># Measure time</span>
+    start_time = time.time()
+    result = self.extractor.extract(test_text)
+    end_time = time.time()
+    
+    extraction_time = end_time - start_time
+    
+    <span class="comment"># Should complete within reasonable time</span>
+    self.assertLess(extraction_time, <span class="number">1.0</span>, <span class="string-literal">"Extraction should complete within 1 second"</span>)
+    self.assertEqual(len(result), <span class="number">8</span>)
+    
+    print(<span class="keyword">f</span><span class="string-literal">"✅ Extraction performance test passed - Time: {extraction_time:.3f}s"</span>)
+
+<span class="keyword">def</span> <span class="method-signature">test_generation_performance</span>(self):
+    <span class="string-literal">"""Test content generation performance"""</span>
+    print(<span class="string-literal">"🔬 Testing generation performance..."</span>)
+    
+    <span class="keyword">import</span> time
+    
+    prompt = <span class="string-literal">"Performance test prompt"</span>
+    
+    <span class="comment"># Measure time</span>
+    start_time = time.time()
+    result = self.writer.generate(prompt)
+    end_time = time.time()
+    
+    generation_time = end_time - start_time
+    
+    <span class="comment"># Should complete within reasonable time</span>
+    self.assertLess(generation_time, <span class="number">5.0</span>, <span class="string-literal">"Generation should complete within 5 seconds"</span>)
+    self.assertIsInstance(result, str)
+    self.assertGreater(len(result), <span class="number">0</span>)
+    
+    print(<span class="keyword">f</span><span class="string-literal">"✅ Generation performance test passed - Time: {generation_time:.3f}s"</span>)
+                    </div>
+
+                    <div class="performance-metrics">
+                        <h4>Performance Benchmarks</h4>
+                        <div class="metric-item">
+                            <div class="metric-name">Extraction Time</div>
+                            <div class="metric-desc">HRV extraction should complete within 1 second</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-name">Generation Time</div>
+                            <div class="metric-desc">Content generation should complete within 5 seconds</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-name">Memory Usage</div>
+                            <div class="metric-desc">Monitor memory consumption during operations</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-name">Throughput</div>
+                            <div class="metric-desc">Measure operations per second</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="integration-testing">
+                <h2 class="section-title">Integration Testing</h2>
+                
+                <div class="integration-testing">
+                    <h3>Multi-Component Workflows</h3>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">test_full_workflow</span>(self):
+    <span class="string-literal">"""Test complete workflow: generate -> extract -> save -> load"""</span>
+    print(<span class="string-literal">"🔬 Testing full workflow..."</span>)
+    
+    <span class="comment"># 1. Generate content</span>
+    prompt = <span class="string-literal">"Integration test prompt"</span>
+    content = self.writer.generate(prompt)
+    
+    <span class="comment"># 2. Extract HRV</span>
+    hrv_vector = self.extractor.extract(content)
+    
+    <span class="comment"># 3. Save as profile</span>
+    self.manager.save_profile(<span class="string-literal">"integration_test"</span>, <span class="string-literal">"generated_profile"</span>, hrv_vector)
+    
+    <span class="comment"># 4. Load profile</span>
+    loaded_vector = self.manager.load_profile(<span class="string-literal">"integration_test"</span>, <span class="string-literal">"generated_profile"</span>)
+    
+    <span class="comment"># Verify</span>
+    self.assertEqual(hrv_vector, loaded_vector)
+    self.assertIsInstance(content, str)
+    self.assertGreater(len(content), <span class="number">0</span>)
+    self.assertEqual(len(hrv_vector), <span class="number">8</span>)
+    
+    print(<span class="string-literal">"✅ Full workflow test passed"</span>)
+
+<span class="keyword">def</span> <span class="method-signature">test_profile_based_generation</span>(self):
+    <span class="string-literal">"""Test generation with profile-based approach"""</span>
+    print(<span class="string-literal">"🔬 Testing profile-based generation..."</span>)
+    
+    <span class="comment"># Create a profile</span>
+    profile_vector = [<span class="number">0.7</span>, <span class="number">0.6</span>, <span class="number">0.8</span>, <span class="number">0.5</span>, <span class="number">0.4</span>, <span class="number">0.3</span>, <span class="number">0.6</span>, <span class="number">0.7</span>]
+    self.manager.save_profile(<span class="string-literal">"test"</span>, <span class="string-literal">"creative_profile"</span>, profile_vector)
+    
+    <span class="comment"># Generate content</span>
+    content = self.writer.generate(<span class="string-literal">"Creative writing test"</span>)
+    
+    <span class="comment"># Extract HRV from generated content</span>
+    extracted_hrv = self.extractor.extract(content)
+    
+    <span class="comment"># Verify</span>
+    self.assertIsInstance(content, str)
+    self.assertEqual(len(extracted_hrv), <span class="number">8</span>)
+    
+    print(<span class="string-literal">"✅ Profile-based generation test passed"</span>)
+                    </div>
+
+                    <div class="integration-workflows">
+                        <h4>Integration Test Workflows</h4>
+                        <div class="workflow-item">
+                            <div class="workflow-number">1</div>
+                            <div class="workflow-description">Generate content with writer</div>
+                        </div>
+                        <div class="workflow-item">
+                            <div class="workflow-number">2</div>
+                            <div class="workflow-description">Extract HRV vectors from content</div>
+                        </div>
+                        <div class="workflow-item">
+                            <div class="workflow-number">3</div>
+                            <div class="workflow-description">Save profiles to storage</div>
+                        </div>
+                        <div class="workflow-item">
+                            <div class="workflow-number">4</div>
+                            <div class="workflow-description">Load and verify profiles</div>
+                        </div>
+                        <div class="workflow-item">
+                            <div class="workflow-number">5</div>
+                            <div class="workflow-description">Test API integration</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-suite-execution">
+                <h2 class="section-title">Test Suite Execution</h2>
+                
+                <div class="suite-demo">
+                    <h3>Running Complete Test Suite</h3>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">run_test_suite</span>(self):
+    <span class="string-literal">"""Run the complete test suite"""</span>
+    print(<span class="string-literal">"🔬 Running ResonanceOS v6 Unit Test Suite"</span>)
+    print(<span class="string-literal">"=" * 60</span>)
+    
+    <span class="comment"># Create test suite</span>
+    test_suite = unittest.TestSuite()
+    
+    <span class="comment"># Add test cases</span>
+    test_classes = [
+        TestHRVExtractor,
+        TestHumanResonantWriter,
+        TestHRVProfileManager,
+        TestAPIIntegration,
+        TestEdgeCases,
+        TestPerformance,
+        TestIntegration
+    ]
+    
+    <span class="keyword">for</span> test_class <span class="keyword">in</span> test_classes:
+        tests = unittest.TestLoader().loadTestsFromTestCase(test_class)
+        test_suite.addTests(tests)
+    
+    <span class="comment"># Run tests</span>
+    runner = unittest.TextTestRunner(verbosity=<span class="number">2</span>)
+    result = runner.run(test_suite)
+    
+    <span class="comment"># Print summary</span>
+    print(<span class="keyword">f</span><span class="string-literal">"Tests Run: {result.testsRun}"</span>)
+    print(<span class="keyword">f</span><span class="string-literal">"Failures: {len(result.failures)}"</span>)
+    print(<span class="keyword">f</span><span class="string-literal">"Errors: {len(result.errors)}"</span>)
+    print(<span class="keyword">f</span><span class="string-literal">"Success Rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%"</span>)
+    
+    <span class="keyword">return</span> result
+                    </div>
+
+                    <div class="suite-features">
+                        <h4>Test Suite Features</h4>
+                        <div class="suite-grid">
+                            <div class="suite-item">
+                                <h5>Comprehensive Coverage</h5>
+                                <p>All major components tested with multiple scenarios</p>
+                            </div>
+                            <div class="suite-item">
+                                <h5>Detailed Reporting</h5>
+                                <p>Verbose output with test names and results</p>
+                            </div>
+                            <div class="suite-item">
+                                <h5>Error Tracking</h5>
+                                <p>Failure and error reporting with traceback</p>
+                            </div>
+                            <div class="suite-item">
+                                <h5>Success Metrics</h5>
+                                <p>Pass rate and performance statistics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="best-practices">
+                <h2 class="section-title">Testing Best Practices</h2>
+                
+                <div class="best-practices">
+                    <h3>Professional Testing Standards</h3>
+                    <div class="practice-list">
+                        <h4>Key Testing Principles</h4>
+                        <div class="practice-item">
+                            <div class="practice-icon">📃</div>
+                            <div class="practice-text">Use descriptive test names that clearly indicate what's being tested</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">⚙️</div>
+                            <div class="practice-text">Test both success and failure cases for comprehensive coverage</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">🏡</div>
+                            <div class="practice-text">Use setUp/tearDown for consistent test fixtures and cleanup</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">🎬</div>
+                            <div class="practice-text">Mock external dependencies to isolate units under test</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">✅</div>
+                            <div class="practice-text">Assert specific conditions rather than general success</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">⏱️</div>
+                            <div class="practice-text">Measure performance when execution time is critical</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">🔬</div>
+                            <div class="practice-text">Test edge cases and boundary conditions thoroughly</div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-icon">📈</div>
+                            <div class="practice-text">Include integration tests for component interactions</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="technical-thesis">
+                <h2 class="section-title">Technical Implementation Thesis</h2>
+                <div class="thesis-content">
+                    <p>
+                        The <strong>unit_tests.py</strong> module represents the comprehensive testing framework for ResonanceOS v6, 
+                        demonstrating professional-grade testing practices that ensure system reliability, maintainability, and 
+                        code quality. This implementation showcases sophisticated understanding of testing methodologies, including 
+                        unit testing, integration testing, performance benchmarking, edge case handling, and mocking techniques. 
+                        The framework provides complete test coverage for all major system components while following industry 
+                        best practices for test organization, naming conventions, and assertion strategies, making it a reference 
+                        implementation for testing complex AI systems.
+                    </p>
+                    
+                    <h3>Testing Philosophy</h3>
+                    <ul>
+                        <li><strong>Comprehensive Coverage:</strong> Test all components with multiple scenarios and edge cases</li>
+                        <li><strong>Isolation Testing:</strong> Use mocking to test units in isolation from dependencies</li>
+                        <li><strong>Performance Awareness:</strong> Monitor execution time and resource usage</li>
+                        <li><strong>Error Resilience:</strong> Verify proper error handling and boundary conditions</li>
+                    </ul>
+                    
+                    <h3>Key Testing Features</h3>
+                    <div class="testing-grid">
+                        <div class="testing-item">
+                            <h4>Structured Test Organization</h4>
+                            <p>Logical grouping of tests by component and functionality.</p>
+                        </div>
+                        <div class="testing-item">
+                            <h4>Comprehensive Assertions</h4>
+                            <p>Detailed validation of expected behaviors and outcomes.</p>
+                        </div>
+                        <div class="testing-item">
+                            <h4>Mock Integration</h4>
+                            <p>Controlled testing environments with dependency isolation.</p>
+                        </div>
+                        <div class="testing-item">
+                            <h4>Performance Monitoring</h4>
+                            <p>Execution time tracking and benchmark validation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="module-footer">
+            <div class="footer-nav">
+                <a href="api_integration.html" class="footer-link">← API Integration</a>
+                <a href="sitemap.html" class="footer-link">Site Map →</a>
+            </div>
+            <div class="footer-info">
+                <p>unit_tests.py - ResonanceOS v6 Comprehensive Unit Testing Framework</p>
+                <p>Module Status: <span class="status-online">● OPERATIONAL</span> | Last Validated: 2026.03.09</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

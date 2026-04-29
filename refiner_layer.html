@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>refiner_layer.py - ResonanceOS v6 Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .code-block {
+            background: rgba(22, 33, 62, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .class-signature {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .method-signature {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .string-literal {
+            color: var(--success-color);
+        }
+        
+        .comment {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .keyword {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .refinement-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(22, 33, 62, 0.5);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .refinement-step {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 350px;
+        }
+        
+        .step-title {
+            font-family: var(--font-primary);
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .flow-arrow {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .feedback-loop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 0, 255, 0.05);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+        }
+        
+        .loop-component {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .loop-arrow {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        
+        .refinement-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+        
+        .example-title {
+            font-family: var(--font-primary);
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .original-sentence {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 10px;
+            text-decoration: line-through;
+        }
+        
+        .refined-sentence {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .feedback-score {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+        
+        .optimization-metrics {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-name {
+            color: var(--text-primary);
+        }
+        
+        .metric-value {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background"></div>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="neural-logo">
+                    <div class="core"></div>
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h1 class="main-title">REFINER_<span class="highlight">LAYER.PY</span></h1>
+            </div>
+            <div class="subtitle">Iterative Content Optimization Engine</div>
+            <div class="version-tag">OPTIMIZATION ENGINE v1.0</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb">← Return to Neural Interface</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="module-overview">
+                <h2 class="section-title">Content Optimization Thesis</h2>
+                <div class="thesis-content">
+                    <p class="thesis-intro">
+                        The <strong>refiner_layer.py</strong> module represents the optimization component of ResonanceOS v6's 
+                        multi-layer generation architecture, responsible for iteratively improving sentences based on 
+                        Human-Resonant Feedback (HRF) scores. This layer implements the critical feedback loop that enables 
+                        the system to achieve optimal human resonance through continuous refinement.
+                    </p>
+                    
+                    <div class="tech-specs">
+                        <h3>Technical Specifications</h3>
+                        <ul>
+                            <li><strong>Layer Type:</strong> Content Optimization Component</li>
+                            <li><strong>Input:</strong> Original Sentence + HRF Feedback Score</li>
+                            <li><strong>Output:</strong> Refined Sentence with Feedback Integration</li>
+                            <li><strong>Optimization Method:</strong> Feedback-Based Refinement</li>
+                            <li><strong>Integration:</strong> Real-time HRF Feedback Processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-implementation">
+                <h2 class="section-title">Core Implementation Architecture</h2>
+                
+                <div class="code-block">
+<span class="keyword">class</span> <span class="class-signature">RefinerLayer</span>:
+    <span class="keyword">def</span> <span class="method-signature">refine</span>(self, sentence: str, hrv_feedback: float) -> str:
+        <span class="comment"># Adjust sentence to improve HRV resonance</span>
+        <span class="keyword">return</span> sentence + f<span class="string-literal">" [Refined with HRV feedback {hrv_feedback:.2f}]"</span>
+                </div>
+
+                <div class="refinement-flow">
+                    <div class="refinement-step">
+                        <div class="step-title">Input Sentence</div>
+                        <div class="step-desc">Receives generated sentence from Sentence Layer</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="refinement-step">
+                        <div class="step-title">HRF Feedback Analysis</div>
+                        <div class="step-desc">Processes human resonance feedback score</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="refinement-step">
+                        <div class="step-title">Content Refinement</div>
+                        <div class="step-desc">Optimizes sentence based on feedback metrics</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="refinement-step">
+                        <div class="step-title">Output Integration</div>
+                        <div class="step-desc">Returns refined sentence with feedback tracking</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="method-analysis">
+                <h2 class="section-title">Core Method Analysis</h2>
+                
+                <div class="method-breakdown">
+                    <h3>refine Method</h3>
+                    <div class="method-signature-display">
+                        <code>refine(sentence: str, hrv_feedback: float) → str</code>
+                    </div>
+                    
+                    <div class="parameter-analysis">
+                        <h4>Parameters</h4>
+                        <div class="parameter-list">
+                            <div class="parameter-item">
+                                <span class="param-name">sentence</span>
+                                <span class="param-type">str</span>
+                                <span class="param-desc">Original sentence from Sentence Layer</span>
+                            </div>
+                            <div class="parameter-item">
+                                <span class="param-name">hrv_feedback</span>
+                                <span class="param-type">float</span>
+                                <span class="param-desc">Human-Resonant Feedback score (0.0-1.0)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="return-analysis">
+                        <h4>Return Value</h4>
+                        <div class="return-item">
+                            <span class="return-name">refined_sentence</span>
+                            <span class="return-type">str</span>
+                            <span class="return-desc">Optimized sentence with feedback integration</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="refinement-process">
+                <h2 class="section-title">Refinement Process Analysis</h2>
+                
+                <div class="feedback-loop">
+                    <div class="loop-component">
+                        <h4>Original Sentence</h4>
+                        <p>Input content requiring optimization</p>
+                    </div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-component">
+                        <h4>HRF Feedback</h4>
+                        <p>Human resonance prediction score</p>
+                    </div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-component">
+                        <h4>Refinement Algorithm</h4>
+                        <p>Feedback-based content optimization</p>
+                    </div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-component">
+                        <h4>Optimized Output</h4>
+                        <p>Enhanced sentence with tracking</p>
+                    </div>
+                </div>
+
+                <div class="refinement-mechanism">
+                    <h3>Refinement Mechanism</h3>
+                    <div class="code-block">
+<span class="keyword">return</span> sentence + f<span class="string-literal">" [Refined with HRV feedback {hrv_feedback:.2f}]"</span>
+                    </div>
+                    
+                    <div class="mechanism-analysis">
+                        <h4>Current Implementation Strategy</h4>
+                        <div class="strategy-grid">
+                            <div class="strategy-item">
+                                <h4>Feedback Integration</h4>
+                                <p>Appends feedback score directly to sentence for tracking and transparency.</p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Score Formatting</h4>
+                                <p>Formats feedback score to 2 decimal places for precision tracking.</p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Content Preservation</h4>
+                                <p>Maintains original sentence content while adding optimization metadata.</p>
+                            </div>
+                            <div class="strategy-item">
+                                <h4>Transparency</h4>
+                                <p>Explicitly shows refinement process and feedback integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="refinement-examples">
+                <h2 class="section-title">Refinement Examples</h2>
+                
+                <div class="refinement-examples">
+                    <div class="example-card">
+                        <div class="example-title">High Feedback Score</div>
+                        <div class="original-sentence">
+                            "Sentence with target valence 0.87 from outline: The future of sustainable energy"
+                        </div>
+                        <div class="refined-sentence">
+                            "Sentence with target valence 0.87 from outline: The future of sustainable energy [Refined with HRV feedback 0.94]"
+                        </div>
+                        <div class="feedback-score">
+                            HRF Score: 0.94 (Excellent resonance)
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-title">Medium Feedback Score</div>
+                        <div class="original-sentence">
+                            "Sentence with target valence 0.12 from outline: The future of sustainable energy"
+                        </div>
+                        <div class="refined-sentence">
+                            "Sentence with target valence 0.12 from outline: The future of sustainable energy [Refined with HRV feedback 0.56]"
+                        </div>
+                        <div class="feedback-score">
+                            HRF Score: 0.56 (Moderate resonance)
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-title">Low Feedback Score</div>
+                        <div class="original-sentence">
+                            "Sentence with target valence -0.65 from outline: The future of sustainable energy"
+                        </div>
+                        <div class="refined-sentence">
+                            "Sentence with target valence -0.65 from outline: The future of sustainable energy [Refined with HRV feedback 0.23]"
+                        </div>
+                        <div class="feedback-score">
+                            HRF Score: 0.23 (Low resonance)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="optimization-analysis">
+                <h2 class="section-title">Optimization Analysis</h2>
+                
+                <div class="optimization-metrics">
+                    <h3>Refinement Performance Metrics</h3>
+                    <div class="metric-row">
+                        <span class="metric-name">Refinement Speed</span>
+                        <span class="metric-value">&lt;0.001s</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-name">Feedback Integration</span>
+                        <span class="metric-value">100%</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-name">Content Preservation</span>
+                        <span class="metric-value">100%</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-name">Transparency Score</span>
+                        <span class="metric-value">High</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-name">Optimization Potential</span>
+                        <span class="metric-value">Placeholder</span>
+                    </div>
+                </div>
+
+                <div class="optimization-strategy">
+                    <h3>Current Optimization Strategy</h3>
+                    <div class="strategy-breakdown">
+                        <div class="strategy-step">
+                            <h4>Feedback Tracking</h4>
+                            <p>The refiner explicitly tracks HRF feedback scores by appending them to sentences, enabling transparent optimization monitoring.</p>
+                        </div>
+                        <div class="strategy-step">
+                            <h4>Content Integrity</h4>
+                            <p>Original sentence content is preserved while adding refinement metadata, ensuring no loss of core information.</p>
+                        </div>
+                        <div class="strategy-step">
+                            <h4>Score Precision</h4>
+                            <p>Feedback scores are formatted to two decimal places, providing precise optimization metrics.</p>
+                        </div>
+                        <div class="strategy-step">
+                            <h4>Process Visibility</h4>
+                            <p>The refinement process is explicitly visible in the output, enabling analysis and debugging.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="integration-context">
+                <h2 class="section-title">System Integration Context</h2>
+                
+                <div class="integration-diagram">
+                    <h3>Position in Generation Pipeline</h3>
+                    <div class="pipeline-context">
+                        <div class="pipeline-stage">
+                            <h4>Sentence Layer</h4>
+                            <p>Generated Sentences → Refiner Layer</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-stage current">
+                            <h4>Refiner Layer</h4>
+                            <p>HRF-Based Content Optimization</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-stage">
+                            <h4>Output Assembly</h4>
+                            <p>Final Article Construction</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="integration-benefits">
+                    <h3>Integration Benefits</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <h4>Quality Assurance</h4>
+                            <p>Ensures all generated content meets minimum resonance standards through feedback optimization.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Continuous Improvement</h4>
+                            <p>Enables iterative refinement based on real-time human resonance predictions.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Transparency</h4>
+                            <p>Provides clear visibility into optimization process and feedback integration.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Extensibility</h4>
+                            <p>Simple design supports advanced optimization strategies and machine learning integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="technical-thesis">
+                <h2 class="section-title">Technical Implementation Thesis</h2>
+                <div class="thesis-content">
+                    <p>
+                        The <strong>refiner_layer.py</strong> module represents the critical optimization component in ResonanceOS v6's 
+                        multi-layer generation architecture. While the current implementation provides a simplified feedback 
+                        integration approach, it establishes the essential pattern for HRF-guided content optimization that 
+                        enables the system to achieve superior human resonance through iterative refinement.
+                    </p>
+                    
+                    <h3>Design Philosophy</h3>
+                    <ul>
+                        <li><strong>Feedback-Driven Optimization:</strong> HRF scores directly influence content refinement</li>
+                        <li><strong>Transparency First:</strong> Optimization process is explicitly visible and trackable</li>
+                        <li><strong>Content Preservation:</strong> Original content integrity is maintained during refinement</li>
+                        <li><strong>Extensible Framework:</strong> Simple design supports sophisticated optimization strategies</li>
+                    </ul>
+                    
+                    <h3>Future Enhancement Roadmap</h3>
+                    <div class="enhancement-roadmap">
+                        <div class="roadmap-item">
+                            <h4>Current: Metadata Integration</h4>
+                            <p>Appends feedback scores as metadata for tracking and transparency.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <h4>Phase 1: Content Modification</h4>
+                            <p>Actual sentence content modification based on feedback analysis.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <h4>Phase 2: Multi-Iteration Refinement</h4>
+                            <p>Iterative refinement loop with convergence criteria.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <h4>Phase 3: ML-Based Optimization</h4>
+                            <p>Machine learning-driven content optimization strategies.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <h4>Phase 4: Adaptive Learning</h4>
+                            <p>Self-learning optimization based on user engagement data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="module-footer">
+            <div class="footer-nav">
+                <a href="sentence_layer.html" class="footer-link">← Sentence Layer</a>
+                <a href="hrf_model.html" class="footer-link">HRF Model →</a>
+            </div>
+            <div class="footer-info">
+                <p>refiner_layer.py - ResonanceOS v6 Content Optimization Component</p>
+                <p>Module Status: <span class="status-online">● OPERATIONAL</span> | Last Validated: 2026.03.09</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

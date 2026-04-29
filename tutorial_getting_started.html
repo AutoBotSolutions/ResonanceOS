@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getting_started.py - ResonanceOS v6 Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .code-block {
+            background: rgba(22, 33, 62, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .keyword {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .string-literal {
+            color: var(--success-color);
+        }
+        
+        .comment {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .number {
+            color: var(--primary-color);
+        }
+        
+        .tutorial-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .feature-title {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .hrv-dimensions {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .dimension-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--success-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .dimension-name {
+            font-family: var(--font-primary);
+            color: var(--success-color);
+            margin-bottom: 8px;
+        }
+        
+        .dimension-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-workflow {
+            background: rgba(255, 0, 255, 0.05);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .workflow-step {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 350px;
+        }
+        
+        .step-title {
+            font-family: var(--font-primary);
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .flow-arrow {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .learning-modules {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid var(--warning-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .module-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--warning-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .module-name {
+            font-family: var(--font-primary);
+            color: var(--warning-color);
+            margin-bottom: 8px;
+        }
+        
+        .module-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .practical-examples {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .example-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .example-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .example-name {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .example-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .next-steps {
+            background: rgba(255, 0, 102, 0.1);
+            border: 1px solid var(--danger-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--danger-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .step-name {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            color: var(--danger-color);
+            margin-bottom: 10px;
+        }
+        
+        .step-value {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background"></div>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="neural-logo">
+                    <div class="core"></div>
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h1 class="main-title">GETTING_<span class="highlight">STARTED.PY</span></h1>
+            </div>
+            <div class="subtitle">Comprehensive Introduction Tutorial</div>
+            <div class="version-tag">TUTORIAL v1.0</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb">← Return to Neural Interface</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="module-overview">
+                <h2 class="section-title">Getting Started Tutorial Thesis</h2>
+                <div class="thesis-content">
+                    <p class="thesis-intro">
+                        The <strong>getting_started.py</strong> tutorial provides a comprehensive introduction to ResonanceOS v6, 
+                        covering basic concepts, system setup, HRV understanding, and first steps in using the human-resonant AI writing system. 
+                        This educational-focused example showcases how new users can quickly get started with ResonanceOS v6, understand the core HRV system, 
+                        generate their first content, and explore the powerful features that make human-resonant content generation possible - all designed 
+                        to provide beginners with a clear, structured learning path to mastering the advanced capabilities of ResonanceOS v6.
+                    </p>
+                    
+                    <div class="tech-specs">
+                        <h3>Technical Specifications</h3>
+                        <ul>
+                            <li><strong>Learning Path:</strong> Step-by-step tutorial from basics to advanced usage</li>
+                            <li><strong>HRV Education:</strong> Comprehensive 8-dimensional HRV system explanation</li>
+                            <li><strong>Practical Examples:</strong> Hands-on content generation demonstrations</li>
+                            <li><strong>System Integration:</strong> Setup and configuration guidance</li>
+                            <li><strong>Feature Exploration:</strong> Introduction to core ResonanceOS capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-implementation">
+                <h2 class="section-title">Tutorial Framework Structure</h2>
+                
+                <div class="code-block">
+<span class="keyword">def</span> <span class="method-signature">welcome_to_resonanceos</span>():
+    <span class="string-literal">"""Welcome and introduction to ResonanceOS v6"""</span>
+    print(<span class="string-literal">"🎊 Welcome to ResonanceOS v6!"</span>)
+    print(<span class="string-literal">"=" * 60</span>)
+    print()
+    print(<span class="string-literal">"ResonanceOS v6 is a Human-Resonant AI Writing System that creates"</span>)
+    print(<span class="string-literal">"content with quantifiable human engagement metrics."</span>)
+    print()
+    print(<span class="string-literal">"Key Features:"</span>)
+    print(<span class="string-literal">"📈 8-dimensional HRV (Human-Resonant Value) vectors"</span>)
+    print(<span class="string-literal">"🎬 Real-time feedback and optimization"</span>)
+    print(<span class="string-literal">"👋 Multi-tenant profile management"</span>)
+    print(<span class="string-literal">"⚙️ Zero external dependencies for core functionality"</span>)
+    print(<span class="string-literal">"▶️ Production-ready architecture"</span>)
+    print()
+    print(<span class="string-literal">"This tutorial will guide you through your first steps."</span>)
+    print()
+
+<span class="keyword">def</span> <span class="method-signature">understanding_hrv_system</span>():
+    <span class="string-literal">"""Explain the HRV system"""</span>
+    print(<span class="string-literal">"🎬 Understanding the HRV System"</span>)
+    print(<span class="string-literal">"=" * 50</span>)
+    print()
+    print(<span class="string-literal">"HRV (Human-Resonant Value) is the core innovation of ResonanceOS v6."</span>)
+    print(<span class="string-literal">"It measures 8 dimensions of human response to text:"</span>)
+    print()
+    
+    dimensions = [
+        (<span class="string-literal">"Sentence Variance"</span>, <span class="string-literal">"Variety in sentence lengths and structures"</span>),
+        (<span class="string-literal">"Emotional Valence"</span>, <span class="string-literal">"Positive/negative sentiment balance (-1.0 to 1.0)"</span>),
+        (<span class="string-literal">"Emotional Intensity"</span>, <span class="string-literal">"Strength of emotional content (0.0 to 1.0)"</span>),
+        (<span class="string-literal">"Assertiveness Index"</span>, <span class="string-literal">"Confidence and directness (0.0 to 1.0)"</span>),
+        (<span class="string-literal">"Curiosity Index"</span>, <span class="string-literal">"Question and curiosity elements (0.0 to 1.0)"</span>),
+        (<span class="string-literal">"Metaphor Density"</span>, <span class="string-literal">"Metaphorical language usage (0.0 to 1.0)"</span>),
+        (<span class="string-literal">"Storytelling Index"</span>, <span class="string-literal">"Narrative and storytelling elements (0.0 to 1.0)"</span>),
+        (<span class="string-literal">"Active Voice Ratio"</span>, <span class="string-literal">"Active vs passive voice (0.0 to 1.0)"</span>)
+    ]
+    
+    <span class="keyword">for</span> name, description <span class="keyword">in</span> dimensions:
+        print(<span class="keyword">f</span><span class="string-literal">"• {name}: {description}"</span>)
+    
+    print()
+    print(<span class="string-literal">"💡 How HRV Works:"</span>)
+    print(<span class="string-literal">"1. Each text gets an 8-dimensional HRV vector"</span>)
+    print(<span class="string-literal">"2. Profiles define target HRV characteristics"</span>)
+    print(<span class="string-literal">"3. System generates content to match target HRV"</span>)
+    print(<span class="string-literal">"4. Real-time feedback optimizes for human resonance"</span>)
+    print()
+
+<span class="keyword">def</span> <span class="method-signature">first_content_generation</span>():
+    <span class="string-literal">"""Generate first content with ResonanceOS"""</span>
+    print(<span class="string-literal">"⭐ Your First Content Generation"</span>)
+    print(<span class="string-literal">"=" * 50</span>)
+    print()
+    print(<span class="string-literal">"Let's generate your first content using ResonanceOS!"</span>)
+    print()
+    
+    <span class="comment"># Initialize the writer</span>
+    writer = HumanResonantWriter()
+    
+    <span class="comment"># Simple prompt</span>
+    prompt = <span class="string-literal">"The importance of innovation in modern business"</span>
+    
+    print(<span class="keyword">f</span><span class="string-literal">"📃 Prompt: {prompt}"</span>)
+    print()
+    
+    <span class="keyword">try</span>:
+        <span class="comment"># Generate content</span>
+        content = writer.generate(prompt)
+        
+        print(<span class="string-literal">"🎊 Content Generated Successfully!"</span>)
+        print(<span class="string-literal">"-" * 30</span>)
+        print(content)
+        print()
+        
+        <span class="comment"># Extract and analyze HRV</span>
+        extractor = HRVExtractor()
+        hrv_vector = extractor.extract(content)
+        
+        print(<span class="string-literal">"📈 HRV Analysis:"</span>)
+        print(<span class="keyword">f</span><span class="string-literal">"Average HRV Score: {sum(hrv_vector)/len(hrv_vector):.3f}"</span>)
+        print(<span class="keyword">f</span><span class="string-literal">"HRV Vector: {[round(x, 3) for x in hrv_vector]}"</span>)
+        print()
+        
+    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+        print(<span class="keyword">f</span><span class="string-literal">"❌ Error: {e}"</span>)
+        print(<span class="string-literal">"Please check your installation and try again."</span>)
+                </div>
+
+                <div class="tutorial-features">
+                    <div class="feature-card">
+                        <div class="feature-title">Comprehensive Introduction</div>
+                        <div class="feature-desc">
+                            Complete system overview and concepts
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">HRV System Education</div>
+                        <div class="feature-desc">
+                            Detailed 8-dimensional HRV explanation
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Hands-On Examples</div>
+                        <div class="feature-desc">
+                            Practical content generation demonstrations
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Step-by-Step Learning</div>
+                        <div class="feature-desc">
+                            Structured tutorial progression
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hrv-dimensions">
+                <h2 class="section-title">8-Dimensional HRV System</h2>
+                
+                <div class="hrv-dimensions">
+                    <h3>Human-Resonant Value Dimensions</h3>
+                    <div class="code-block">
+<span class="comment"># HRV Dimensions with detailed explanations</span>
+hrv_dimensions = {
+    <span class="string-literal">"sentence_variance"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Sentence Variance"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Variety in sentence lengths and structures"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher variance creates more engaging, dynamic prose"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Mix of short, punchy sentences and longer, complex ones"</span>
+    },
+    <span class="string-literal">"emotional_valence"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Emotional Valence"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Positive/negative sentiment balance"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"-1.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Determines emotional tone of content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Positive: 0.7, Negative: -0.3, Neutral: 0.1"</span>
+    },
+    <span class="string-literal">"emotional_intensity"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Emotional Intensity"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Strength of emotional content"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher intensity creates more passionate content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Low: 0.2 (calm), High: 0.8 (passionate)"</span>
+    },
+    <span class="string-literal">"assertiveness_index"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Assertiveness Index"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Confidence and directness"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher assertiveness creates authoritative content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Low: 0.3 (tentative), High: 0.9 (confident)"</span>
+    },
+    <span class="string-literal">"curiosity_index"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Curiosity Index"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Question and curiosity elements"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher curiosity creates engaging, thought-provoking content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Questions, hypotheticals, and exploratory language"</span>
+    },
+    <span class="string-literal">"metaphor_density"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Metaphor Density"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Metaphorical language usage"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher density creates more vivid, imaginative content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Similes, metaphors, and figurative language"</span>
+    },
+    <span class="string-literal">"storytelling_index"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Storytelling Index"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Narrative and storytelling elements"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher index creates compelling narrative content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Stories, anecdotes, and narrative structures"</span>
+    },
+    <span class="string-literal">"active_voice_ratio"</span>: {
+        <span class="string-literal">"name"</span>: <span class="string-literal">"Active Voice Ratio"</span>,
+        <span class="string-literal">"description"</span>: <span class="string-literal">"Active vs passive voice"</span>,
+        <span class="string-literal">"range"</span>: <span class="string-literal">"0.0 to 1.0"</span>,
+        <span class="string-literal">"impact"</span>: <span class="string-literal">"Higher ratio creates more dynamic, direct content"</span>,
+        <span class="string-literal">"example"</span>: <span class="string-literal">"Active: 'The team achieved success' vs Passive: 'Success was achieved'"</span>
+    }
+}
+                    </div>
+
+                    <div class="dimension-grid">
+                        <h4>HRV Dimensions Overview</h4>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Sentence Variance</div>
+                            <div class="dimension-desc">Sentence structure variety</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Emotional Valence</div>
+                            <div class="dimension-desc">Sentiment balance (-1.0 to 1.0)</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Emotional Intensity</div>
+                            <div class="dimension-desc">Emotional strength (0.0 to 1.0)</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Assertiveness Index</div>
+                            <div class="dimension-desc">Confidence and directness</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Curiosity Index</div>
+                            <div class="dimension-desc">Question and curiosity elements</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Metaphor Density</div>
+                            <div class="dimension-desc">Figurative language usage</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Storytelling Index</div>
+                            <div class="dimension-desc">Narrative elements</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-name">Active Voice Ratio</div>
+                            <div class="dimension-desc">Active vs passive voice</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tutorial-workflow">
+                <h2 class="section-title">Tutorial Learning Workflow</h2>
+                
+                <div class="tutorial-workflow">
+                    <h3>Step-by-Step Learning Path</h3>
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="step-title">1. Welcome Introduction</div>
+                            <div class="step-desc">System overview and key features</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="workflow-step">
+                            <div class="step-title">2. HRV System Understanding</div>
+                            <div class="step-desc">8-dimensional HRV explanation</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="workflow-step">
+                            <div class="step-title">3. First Content Generation</div>
+                            <div class="step-desc">Hands-on content creation</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="workflow-step">
+                            <div class="step-title">4. HRV Analysis</div>
+                            <div class="step-desc">Understanding generated HRV</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="workflow-step">
+                            <div class="step-title">5. Profile Management</div>
+                            <div class="step-desc">Creating and using HRV profiles</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="learning-modules">
+                <h2 class="section-title">Learning Modules & Examples</h2>
+                
+                <div class="learning-modules">
+                    <h3>Comprehensive Tutorial Modules</h3>
+                    <div class="code-block">
+<span class="comment"># Tutorial module structure</span>
+tutorial_modules = {
+    <span class="string-literal">"module_1_introduction"</span>: {
+        <span class="string-literal">"title"</span>: <span class="string-literal">"Welcome to ResonanceOS v6"</span>,
+        <span class="string-literal">"topics"</span>: [
+            <span class="string-literal">"System overview and architecture"</span>,
+            <span class="string-literal">"Key features and capabilities"</span>,
+            <span class="string-literal">"Installation and setup requirements"</span>,
+            <span class="string-literal">"Core concepts and terminology"</span>
+        ],
+        <span class="string-literal">"learning_objectives"</span>: [
+            <span class="string-literal">"Understand ResonanceOS v6 purpose"</span>,
+            <span class="string-literal">"Identify key system components"</span>,
+            <span class="string-literal">"Recognize HRV system importance"</span>
+        ]
+    },
+    <span class="string-literal">"module_2_hrv_system"</span>: {
+        <span class="string-literal">"title"</span>: <span class="string-literal">"Understanding the HRV System"</span>,
+        <span class="string-literal">"topics"</span>: [
+            <span class="string-literal">"8-dimensional HRV vectors"</span>,
+            <span class="string-literal">"HRV calculation and analysis"</span>,
+            <span class="string-literal">"Target HRV profiles"</span>,
+            <span class="string-literal">"Real-time feedback optimization"</span>
+        ],
+        <span class="string-literal">"learning_objectives"</span>: [
+            <span class="string-literal">"Explain each HRV dimension"</span>,
+            <span class="string-literal">"Understand HRV vector interpretation"</span>,
+            <span class="string-literal">"Recognize HRV optimization process"</span>
+        ]
+    },
+    <span class="string-literal">"module_3_first_generation"</span>: {
+        <span class="string-literal">"title"</span>: <span class="string-literal">"First Content Generation"</span>,
+        <span class="string-literal">"topics"</span>: [
+            <span class="string-literal">"Initializing HumanResonantWriter"</span>,
+            <span class="string-literal">"Creating effective prompts"</span>,
+            <span class="string-literal">"Generating and analyzing content"</span>,
+            <span class="string-literal">"Understanding output quality"</span>
+        ],
+        <span class="string-literal">"learning_objectives"</span>: [
+            <span class="string-literal">"Generate first content successfully"</span>,
+            <span class="string-literal">"Analyze generated HRV vectors"</span>,
+            <span class="string-literal">"Interpret content quality metrics"</span>
+        ]
+    },
+    <span class="string-literal">"module_4_profile_management"</span>: {
+        <span class="string-literal">"title"</span>: <span class="string-literal">"Profile Management"</span>,
+        <span class="string-literal">"topics"</span>: [
+            <span class="string-literal">"Creating custom HRV profiles"</span>,
+            <span class="string-literal">"Multi-tenant profile systems"</span>,
+            <span class="string-literal">"Profile-based content generation"</span>,
+            <span class="string-literal">"Profile optimization and tuning"</span>
+        ],
+        <span class="string-literal">"learning_objectives"</span>: [
+            <span class="string-literal">"Create and manage HRV profiles"</span>,
+            <span class="string-literal">"Use profiles for content generation"</span>,
+            <span class="string-literal">"Optimize profiles for specific needs"</span>
+        ]
+    }
+}
+                    </div>
+
+                    <div class="module-grid">
+                        <h4>Tutorial Modules</h4>
+                        <div class="module-item">
+                            <div class="module-name">System Introduction</div>
+                            <div class="module-desc">Overview and architecture</div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-name">HRV System</div>
+                            <div class="module-desc">8-dimensional HRV explanation</div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-name">Content Generation</div>
+                            <div class="module-desc">Hands-on generation examples</div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-name">Profile Management</div>
+                            <div class="module-desc">Creating and using profiles</div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-name">API Integration</div>
+                            <div class="module-desc">REST API usage examples</div>
+                        </div>
+                        <div class="module-item">
+                            <div class="module-name">Advanced Features</div>
+                            <div class="module-desc">Complex capabilities exploration</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="practical-examples">
+                <h2 class="section-title">Practical Examples & Demos</h2>
+                
+                <div class="practical-examples">
+                    <h3>Hands-On Learning Examples</h3>
+                    <div class="code-block">
+<span class="comment"># Practical example: Content generation with HRV analysis</span>
+<span class="keyword">def</span> <span class="method-signature">practical_content_example</span>():
+    <span class="string-literal">"""Practical content generation example with analysis"""</span>
+    
+    print(<span class="string-literal">"🎬 Practical Example: Content Generation"</span>)
+    print(<span class="string-literal">"=" * 50</span>)
+    
+    <span class="comment"># Initialize components</span>
+    writer = HumanResonantWriter()
+    extractor = HRVExtractor()
+    
+    <span class="comment"># Example prompts for different content types</span>
+    examples = [
+        {
+            <span class="string-literal">"type"</span>: <span class="string-literal">"Business Article"</span>,
+            <span class="string-literal">"prompt"</span>: <span class="string-literal">"The future of artificial intelligence in business"</span>,
+            <span class="string-literal">"target_hrv"</span>: [<span class="number">0.6</span>, <span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.7</span>, <span class="number">0.4</span>, <span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.8</span>]
+        },
+        {
+            <span class="string-literal">"type"</span>: <span class="string-literal">"Creative Story"</span>,
+            <span class="string-literal">"prompt"</span>: <span class="string-literal">"A mysterious discovery in an ancient library"</span>,
+            <span class="string-literal">"target_hrv"</span>: [<span class="number">0.8</span>, <span class="number">0.5</span>, <span class="number">0.7</span>, <span class="number">0.4</span>, <span class="number">0.8</span>, <span class="number">0.7</span>, <span class="number">0.9</span>, <span class="number">0.6</span>]
+        },
+        {
+            <span class="string-literal">"type"</span>: <span class="string-literal">"Technical Documentation"</span>,
+            <span class="string-literal">"prompt"</span>: <span class="string-literal">"How to implement machine learning pipelines"</span>,
+            <span class="string-literal">"target_hrv"</span>: [<span class="number">0.4</span>, <span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">0.6</span>, <span class="number">0.5</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.9</span>]
+        }
+    ]
+    
+    <span class="keyword">for</span> i, example <span class="keyword">in</span> enumerate(examples, <span class="number">1</span>):
+        print(<span class="keyword">f</span><span class="string-literal">"\n📃 Example {i}: {example['type']}"</span>)
+        print(<span class="keyword">f</span><span class="string-literal">"Prompt: {example['prompt']}"</span>)
+        print(<span class="keyword">f</span><span class="string-literal">"Target HRV: {[round(x, 2) for x in example['target_hrv']]}"</span>)
+        
+        <span class="keyword">try</span>:
+            <span class="comment"># Generate content</span>
+            content = writer.generate(example[<span class="string-literal">"prompt"</span>])
+            
+            <span class="comment"># Extract HRV</span>
+            actual_hrv = extractor.extract(content)
+            
+            <span class="comment"># Calculate similarity</span>
+            similarity = cosine_similarity(example[<span class="string-literal">"target_hrv"</span>], actual_hrv)
+            
+            print(<span class="keyword">f</span><span class="string-literal">"✅ Generated {len(content)} characters"</span>)
+            print(<span class="keyword">f</span><span class="string-literal">"📈 Actual HRV: {[round(x, 2) for x in actual_hrv]}"</span>)
+            print(<span class="keyword">f</span><span class="string-literal">"🎬 Target Similarity: {similarity:.3f}"</span>)
+            
+            <span class="comment"># Display first 100 characters</span>
+            print(<span class="keyword">f</span><span class="string-literal">"📃 Preview: {content[:100]}..."</span>)
+            
+        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+            print(<span class="keyword">f</span><span class="string-literal">"❌ Error: {e}"</span>)
+        
+        print(<span class="string-literal">"-" * 50)
+
+<span class="keyword">def</span> <span class="method-signature">cosine_similarity</span>(vec1, vec2):
+    <span class="string-literal">"""Calculate cosine similarity between two HRV vectors"""</span>
+    dot_product = sum(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> zip(vec1, vec2))
+    magnitude1 = sum(a * a <span class="keyword">for</span> a <span class="keyword">in</span> vec1) ** <span class="number">0.5</span>
+    magnitude2 = sum(b * b <span class="keyword">for</span> b <span class="keyword">in</span> vec2) ** <span class="number">0.5</span>
+    
+    <span class="keyword">if</span> magnitude1 == <span class="number">0</span> <span class="keyword">or</span> magnitude2 == <span class="number">0</span>:
+        <span class="keyword">return</span> <span class="number">0.0</span>
+    
+    <span class="keyword">return</span> dot_product / (magnitude1 * magnitude2)
+                    </div>
+
+                    <div class="example-features">
+                        <h4>Example Features</h4>
+                        <div class="example-item">
+                            <div class="example-name">Business Content</div>
+                            <div class="example-desc">Professional article generation</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-name">Creative Writing</div>
+                            <div class="example-desc">Story and narrative generation</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-name">Technical Docs</div>
+                            <div class="example-desc">Documentation generation</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-name">HRV Analysis</div>
+                            <div class="example-desc">Real-time vector comparison</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-name">Similarity Scoring</div>
+                            <div class="example-desc">Target achievement metrics</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-name">Content Preview</div>
+                            <div class="example-desc">Output quality assessment</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="next-steps">
+                <h2 class="section-title">Next Steps & Learning Path</h2>
+                
+                <div class="next-steps">
+                    <h3>Continuing Your ResonanceOS Journey</h3>
+                    <div class="code-block">
+<span class="comment"># Learning progression and next steps</span>
+learning_path = {
+    <span class="string-literal">"beginner_completed"</span>: {
+        <span class="string-literal">"achievement"</span>: <span class="string-literal">"Getting Started Tutorial Complete"</span>,
+        <span class="string-literal">"skills_acquired"</span>: [
+            <span class="string-literal">"Basic ResonanceOS understanding"</span>,
+            <span class="string-literal">"HRV system knowledge"</span>,
+            <span class="string-literal">"First content generation"</span>,
+            <span class="string-literal">"Basic HRV analysis"</span>
+        ]
+    },
+    <span class="string-literal">"intermediate_recommended"</span>: {
+        <span class="string-literal">"next_tutorial"</span>: <span class="string-literal">"Profile Mastery Tutorial"</span>,
+        <span class="string-literal">"focus_areas"</span>: [
+            <span class="string-literal">"Advanced profile management"</span>,
+            <span class="string-literal">"Multi-tenant systems"</span>,
+            <span class="string-literal">"Profile optimization"</span>,
+            <span class="string-literal">"Custom HRV targeting"</span>
+        ]
+    },
+    <span class="string-literal">"advanced_topics"</span>: {
+        <span class="string-literal">"future_learning"</span>: [
+            <span class="string-literal">"Reinforcement Learning Training"</span>,
+            <span class="string-literal">"API Integration & Development"</span>,
+            <span class="string-literal">"Live HRV Simulation"</span>,
+            <span class="string-literal">"Business Applications"</span>,
+            <span class="string-literal">"Creative Writing Applications"</span>,
+            <span class="string-literal">"Data Science & Analysis"</span>
+        ]
+    },
+    <span class="string-literal">"practice_projects"</span>: {
+        <span class="string-literal">"recommended_projects"</span>: [
+            <span class="string-literal">"Create custom HRV profile for your brand"</span>,
+            <span class="string-literal">"Generate blog post series with consistent tone"</span>,
+            <span class="string-literal">"Build simple API integration"</span>,
+            <span class="string-literal">"Analyze existing content HRV patterns"</span>,
+            <span class="string-literal">"Experiment with different content types"</span>
+        ]
+    }
+}
+
+<span class="keyword">def</span> <span class="method-signature">conclusion_and_next_steps</span>():
+    <span class="string-literal">"""Tutorial conclusion and guidance for next steps"""</span>
+    
+    print(<span class="string-literal">"🎊 Congratulations!"</span>)
+    print(<span class="string-literal">"=" * 40</span>)
+    print()
+    print(<span class="string-literal">"You've completed the Getting Started Tutorial for ResonanceOS v6!"</span>)
+    print()
+    print(<span class="string-literal">"🥇 What You've Learned:"</span>)
+    print(<span class="string-literal">"• ResonanceOS v6 architecture and capabilities"</span>)
+    print(<span class="string-literal">"• 8-dimensional HRV system understanding"</span>)
+    print(<span class="string-literal">"• Content generation with HRV analysis"</span>)
+    print(<span class="string-literal">"• Profile management basics"</span>)
+    print()
+    print(<span class="string-literal">"▶️ What's Next:"</span>)
+    print(<span class="string-literal">"1. Try the Profile Mastery Tutorial"</span>)
+    print(<span class="string-literal">"2. Explore advanced examples in the examples directory"</span>)
+    print(<span class="string-literal">"3. Experiment with your own content projects"</span>)
+    print(<span class="string-literal">"4. Join the ResonanceOS community for support"</span>)
+    print()
+    print(<span class="string-literal">"📚 Additional Resources:"</span>)
+    print(<span class="string-literal">"• Documentation: /docs directory"</span>)
+    print(<span class="string-literal">"• Examples: /examples directory"</span>)
+    print(<span class="string-literal">"• API Reference: Check API documentation"</span>)
+    print(<span class="string-literal">"• Community: Join our developer community"</span>)
+    print()
+    print(<span class="string-literal">"⭐ Happy writing with ResonanceOS v6!"</span>)
+                    </div>
+
+                    <div class="steps-grid">
+                        <h4>Next Steps Overview</h4>
+                        <div class="step-card">
+                            <div class="step-name">Profile Mastery</div>
+                            <div class="step-value">Next</div>
+                            <div class="step-desc">Advanced profile management</div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-name">API Integration</div>
+                            <div class="step-value">Intermediate</div>
+                            <div class="step-desc">REST API development</div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-name">RL Training</div>
+                            <div class="step-value">Advanced</div>
+                            <div class="step-desc">Machine learning optimization</div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-name">Practice Projects</div>
+                            <div class="step-value">Ongoing</div>
+                            <div class="step-desc">Real-world applications</div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-name">Community</div>
+                            <div class="step-value">Resource</div>
+                            <div class="step-desc">Support and collaboration</div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-name">Documentation</div>
+                            <div class="step-value">Reference</div>
+                            <div class="step-desc">Deep-dive resources</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="technical-thesis">
+                <h2 class="section-title">Technical Implementation Thesis</h2>
+                <div class="thesis-content">
+                    <p>
+                        The <strong>getting_started.py</strong> tutorial represents comprehensive educational capabilities for ResonanceOS v6, 
+                        demonstrating how new users can quickly get started with the human-resonant AI writing system, understand the core HRV concepts, 
+                        and begin generating high-quality content with measurable human resonance. This implementation showcases sophisticated understanding 
+                        of educational design, progressive learning, practical examples, and user guidance while providing beginners with a clear, 
+                        structured path to mastering the advanced capabilities of ResonanceOS v6.
+                    </p>
+                    
+                    <h3>Educational Philosophy</h3>
+                    <ul>
+                        <li><strong>Progressive Learning:</strong> Step-by-step tutorial from basics to advanced</li>
+                        <li><strong>Practical Focus:</strong> Hands-on examples and real-world applications</li>
+                        <li><strong>Concept Clarity:</strong> Clear explanations of complex HRV concepts</li>
+                        <li><strong>Immediate Results:</strong> Quick success with first content generation</li>
+                    </ul>
+                    
+                    <h3>Key Tutorial Features</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-item">
+                            <h4>System Introduction</h4>
+                            <p>Comprehensive overview and architecture.</p>
+                        </div>
+                        <div class="tutorial-item">
+                            <h4>HRV Education</h4>
+                            <p>8-dimensional system explanation.</p>
+                        </div>
+                        <div class="tutorial-item">
+                            <h4>Hands-On Examples</h4>
+                            <p>Practical content generation demos.</p>
+                        </div>
+                        <div class="tutorial-item">
+                            <h4>Learning Path</h4>
+                            <p>Structured progression guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="module-footer">
+            <div class="footer-nav">
+                <a href="training_hr_rl.html" class="footer-link">← HR-RL Training</a>
+                <a href="sitemap.html" class="footer-link">Site Map →</a>
+            </div>
+            <div class="footer-info">
+                <p>getting_started.py - ResonanceOS v6 Comprehensive Introduction Tutorial</p>
+                <p>Module Status: <span class="status-online">● OPERATIONAL</span> | Last Validated: 2026.03.09</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
