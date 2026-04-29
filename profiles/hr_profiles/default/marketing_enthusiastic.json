@@ -1,0 +1,83 @@
+{
+  "name": "marketing_enthusiastic",
+  "version": "1.0",
+  "description": "High-energy marketing profile designed for persuasive content, campaigns, and promotional materials",
+  "target_hrv": [0.7, 0.6, 0.8, 0.6, 0.7, 0.6, 0.7, 0.8],
+  "metadata": {
+    "created_at": "2026-03-09T12:16:00Z",
+    "created_by": "system",
+    "updated_at": "2026-03-09T12:16:00Z",
+    "tags": ["marketing", "enthusiastic", "persuasive", "high-energy"],
+    "use_case": "Marketing campaigns and promotional content",
+    "target_audience": "Consumers, prospects, leads",
+    "content_types": ["advertisements", "social media", "email campaigns", "landing pages"],
+    "emotional_tone": "Enthusiastic and persuasive",
+    "complexity_level": "Low-Medium",
+    "formality_level": "Informal to Semi-Formal"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "value": 0.7,
+      "description": "High variety for dynamic marketing copy",
+      "target_range": "0.6-0.8"
+    },
+    "emotional_valence": {
+      "value": 0.6,
+      "description": "Positive and optimistic emotional tone",
+      "target_range": "0.5-0.7"
+    },
+    "emotional_intensity": {
+      "value": 0.8,
+      "description": "High emotional intensity for engagement",
+      "target_range": "0.7-0.9"
+    },
+    "assertiveness_index": {
+      "value": 0.6,
+      "description": "Confident but approachable tone",
+      "target_range": "0.5-0.7"
+    },
+    "curiosity_index": {
+      "value": 0.7,
+      "description": "Strong curiosity elements to drive action",
+      "target_range": "0.6-0.8"
+    },
+    "metaphor_density": {
+      "value": 0.6,
+      "description": "Moderate use of creative language",
+      "target_range": "0.5-0.7"
+    },
+    "storytelling_index": {
+      "value": 0.7,
+      "description": "Strong narrative elements for connection",
+      "target_range": "0.6-0.8"
+    },
+    "active_voice_ratio": {
+      "value": 0.8,
+      "description": "High active voice for direct messaging",
+      "target_range": "0.7-0.9"
+    }
+  },
+  "generation_guidelines": {
+    "sentence_length": {
+      "average": "10-15 words",
+      "range": "5-25 words"
+    },
+    "paragraph_length": {
+      "average": "2-4 sentences",
+      "range": "1-6 sentences"
+    },
+    "vocabulary": "Accessible and action-oriented",
+    "tone": "Enthusiastic and motivating",
+    "style": "Punchy, direct, and action-driven"
+  },
+  "quality_metrics": {
+    "readability_score": "Target: 65-75 (Flesch-Kincaid)",
+    "engagement_rate": "Target: 80-90%",
+    "completion_rate": "Target: 70-80%"
+  },
+  "compatibility": {
+    "resonance_os_version": "v6.0+",
+    "api_version": "1.0+",
+    "dependencies": []
+  }
+}

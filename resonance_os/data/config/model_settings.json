@@ -1,0 +1,168 @@
+{
+  "hrf_model": {
+    "type": "statistical",
+    "version": "1.0",
+    "features": [
+      "sentence_length_variance",
+      "sentiment_polarity",
+      "sentiment_intensity",
+      "lexical_diversity",
+      "readability_score",
+      "complexity_metrics"
+    ],
+    "parameters": {
+      "smoothing_factor": 0.1,
+      "normalization": true,
+      "feature_weights": {
+        "sentence_variance": 0.15,
+        "emotional_valence": 0.20,
+        "emotional_intensity": 0.15,
+        "assertiveness_index": 0.10,
+        "curiosity_index": 0.10,
+        "metaphor_density": 0.08,
+        "storytelling_index": 0.12,
+        "active_voice_ratio": 0.10
+      }
+    },
+    "training": {
+      "algorithm": "linear_regression",
+      "regularization": "l2",
+      "regularization_strength": 0.01,
+      "cross_validation": 5,
+      "test_split": 0.2
+    }
+  },
+  "planner_layer": {
+    "type": "rule_based",
+    "version": "1.0",
+    "parameters": {
+      "default_paragraphs": 3,
+      "min_paragraphs": 1,
+      "max_paragraphs": 10,
+      "outline_templates": [
+        "introduction",
+        "development",
+        "conclusion"
+      ],
+      "hrv_targeting": {
+        "strategy": "profile_based",
+        "variance_allowed": 0.1,
+        "adaptation_rate": 0.05
+      }
+    }
+  },
+  "sentence_layer": {
+    "type": "template_based",
+    "version": "1.0",
+    "parameters": {
+      "sentence_templates": [
+        "simple",
+        "compound",
+        "complex",
+        "compound_complex"
+      ],
+      "length_constraints": {
+        "min_length": 5,
+        "max_length": 50,
+        "target_average": 15
+      },
+      "hrv_alignment": {
+        "emotional_valence_weight": 0.3,
+        "assertiveness_weight": 0.2,
+        "curiosity_weight": 0.2,
+        "complexity_weight": 0.3
+      }
+    }
+  },
+  "refiner_layer": {
+    "type": "iterative",
+    "version": "1.0",
+    "parameters": {
+      "max_iterations": 3,
+      "convergence_threshold": 0.05,
+      "refinement_strategies": [
+        "word_choice",
+        "sentence_structure",
+        "tone_adjustment",
+        "clarity_improvement"
+      ],
+      "feedback_integration": {
+        "weight": 0.7,
+        "smoothing": 0.3,
+        "min_change_threshold": 0.01
+      }
+    }
+  },
+  "hrv_extractor": {
+    "type": "statistical",
+    "version": "1.0",
+    "features": {
+      "sentence_variance": {
+        "method": "variance_analysis",
+        "window_size": 5,
+        "normalize": true
+      },
+      "emotional_valence": {
+        "method": "sentiment_lexicon",
+        "lexicon_path": "./data/lexicons/sentiment.json",
+        "threshold": 0.0
+      },
+      "emotional_intensity": {
+        "method": "absolute_sentiment",
+        "scaling_factor": 1.0
+      },
+      "assertiveness_index": {
+        "method": "linguistic_markers",
+        "assertive_words": ["must", "should", "will", "definitely"],
+        "passive_indicators": ["might", "could", "perhaps"]
+      },
+      "curiosity_index": {
+        "method": "question_density",
+        "question_words": ["what", "how", "why", "when", "where"],
+        "curiosity_phrases": ["interesting", "fascinating", "remarkable"]
+      },
+      "metaphor_density": {
+        "method": "pattern_matching",
+        "metaphor_patterns": [
+          "like a",
+          "as if",
+          "similar to",
+          "represents"
+        ]
+      },
+      "storytelling_index": {
+        "method": "narrative_structure",
+        "narrative_markers": ["once", "then", "finally", "suddenly"],
+        "story_elements": ["character", "setting", "plot", "resolution"]
+      },
+      "active_voice_ratio": {
+        "method": "syntactic_analysis",
+        "passive_indicators": ["was", "were", "been", "by"],
+        "active_indicators": ["runs", "writes", "creates", "develops"]
+      }
+    }
+  },
+  "optimization": {
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs": 100,
+    "early_stopping": true,
+    "patience": 10,
+    "validation_split": 0.2,
+    "optimizer": "adam",
+    "loss_function": "mse"
+  },
+  "evaluation": {
+    "metrics": [
+      "hrv_alignment_score",
+      "coherence_score",
+      "readability_score",
+      "engagement_prediction"
+    ],
+    "thresholds": {
+      "minimum_alignment": 0.8,
+      "minimum_coherence": 0.7,
+      "minimum_readability": 0.6
+    }
+  }
+}

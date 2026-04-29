@@ -1,0 +1,48 @@
+{
+  "name": "Tech Startup Profile",
+  "description": "Modern, innovative tone suitable for technology startups and venture capital communications",
+  "hrv_vector": [0.6, 0.4, 0.7, 0.7, 0.8, 0.3, 0.4, 0.8],
+  "metadata": {
+    "category": "technology",
+    "formality": "business_casual",
+    "use_cases": ["pitch_decks", "investor_updates", "product_announcements", "team_communications"],
+    "target_audience": ["investors", "employees", "customers", "partners"],
+    "brand_personality": ["innovative", "forward-thinking", "confident", "disruptive"],
+    "tone_guidelines": {
+      "vocabulary": ["innovative", "disrupt", "scale", "optimize", "leverage", "synergy"],
+      "sentence_style": "clear and direct with occasional technical complexity",
+      "emotional_tone": "optimistic and confident",
+      "persuasion_level": "moderate to high"
+    },
+    "created_at": "2026-03-09T00:00:00Z",
+    "updated_at": "2026-03-09T00:00:00Z",
+    "version": "1.0",
+    "created_by": "ResonanceOS v6",
+    "tags": ["technology", "startup", "business", "innovation"]
+  },
+  "examples": {
+    "mission_statement": "We're disrupting the enterprise software landscape through AI-powered automation that scales with your business growth.",
+    "product_description": "Our revolutionary platform leverages machine learning to optimize workflows, reduce operational costs by 40%, and accelerate digital transformation initiatives.",
+    "investor_pitch": "With a total addressable market of $50 billion and early adoption rates exceeding industry averages by 300%, we're positioned to capture significant market share within the next 24 months."
+  },
+  "constraints": {
+    "avoid": ["corporate jargon", "overly technical explanations", "uncertainty"],
+    "prefer": ["action-oriented language", "metrics and data", "future-focused statements"],
+    "readability_level": "college-educated professional",
+    "average_sentence_length": "15-20 words"
+  },
+  "adaptation_rules": {
+    "formal_contexts": {
+      "adjustments": {
+        "assertiveness_index": "+0.2",
+        "emotional_valence": "-0.1"
+      }
+    },
+    "casual_contexts": {
+      "adjustments": {
+        "curiosity_index": "+0.3",
+        "storytelling_index": "+0.2"
+      }
+    }
+  }
+}

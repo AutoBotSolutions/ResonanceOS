@@ -1,0 +1,50 @@
+{
+  "name": "Profile Name",
+  "description": "Detailed description of this profile's purpose and characteristics",
+  "hrv_vector": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+  "metadata": {
+    "created_at": "2026-03-09T00:00:00Z",
+    "updated_at": "2026-03-09T00:00:00Z",
+    "version": "1.0",
+    "created_by": "User",
+    "category": "business",
+    "formality": "professional",
+    "use_cases": ["general_purpose"],
+    "target_audience": ["general"],
+    "brand_personality": ["neutral", "adaptable"],
+    "tone_guidelines": {
+      "vocabulary": ["appropriate", "relevant", "clear"],
+      "sentence_style": "balanced and readable",
+      "emotional_tone": "neutral",
+      "persuasion_level": "moderate"
+    },
+    "examples": {
+      "mission_statement": "Example mission statement using this profile",
+      "product_description": "Example product description using this profile",
+      "customer_communication": "Example customer communication using this profile"
+    },
+    "constraints": {
+      "avoid": ["inappropriate", "unclear", "offensive"],
+      "prefer": ["clear", "relevant", "appropriate"],
+      "readability_level": "college",
+      "average_sentence_length": "15-20"
+    },
+    "adaptation_rules": {
+      "formal_contexts": {
+        "adjustments": {
+          "assertiveness_index": 0.1,
+          "emotional_valence": -0.1
+        }
+      },
+      "casual_contexts": {
+        "adjustments": {
+          "curiosity_index": 0.2,
+          "storytelling_index": 0.1
+        }
+      }
+    },
+    "tags": ["template", "customizable"],
+    "is_active": true,
+    "is_default": false
+  }
+}

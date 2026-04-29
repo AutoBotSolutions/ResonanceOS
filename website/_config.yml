@@ -1,0 +1,31 @@
+# GitHub Pages Configuration for ResonanceOS v6 Documentation
+
+# Site settings
+title: ResonanceOS v6 Documentation
+description: Human-Resonant AI System Documentation
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-seo-tag
+
+# GitHub Pages specific settings
+github:
+  repository: ""
+  project_page: ""
+
+# Exclude files from processing
+exclude:
+  - .gitignore
+  - README.md
+  - LICENSE
+
+# Permalink structure
+permalink: pretty
+
+# Sass settings
+sass:
+  style: compressed

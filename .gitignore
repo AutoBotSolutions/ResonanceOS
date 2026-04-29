@@ -1,0 +1,255 @@
+# ResonanceOS v6 .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+# Data directories (keep structure, ignore generated content)
+resonance_os/data/logs/*.log
+resonance_os/data/exports/analytics/*.json
+resonance_os/data/exports/visualizations/*.html
+resonance_os/data/exports/backups/*.tar.gz
+resonance_os/data/exports/reports/*.json
+resonance_os/data/profiles/hr_profiles/*.json
+resonance_os/data/corpora/*/processed/
+resonance_os/data/models/*/checkpoints/
+resonance_os/data/models/*/embeddings/
+
+# Test outputs
+test_results_*.json
+coverage.xml
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Backup files
+backups/
+*.bak
+*.backup
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Profiling
+*.prof
+*.profile
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+cache/
+
+# API server
+*.pid
+server.log
+
+# Configuration overrides
+config/local_*.json
+config/production_*.json
+
+# Performance data
+performance_*.json
+benchmarks_*.json
+
+# User data
+user_data/
+user_profiles/
+user_content/
+
+# Documentation build
+docs/_build/
+docs/build/
+
+# Examples output
+examples/output/
+examples/results/
+examples/generated/
+
+# Scripts output
+scripts/output/
+scripts/results/
+
+# Monitoring and analytics
+monitoring/
+analytics/
+metrics/
+
+# Security
+*.key
+*.pem
+*.crt
+secrets/
+.secrets/
+
+# Development
+dev/
+development/
+experimental/
+
+# Build artifacts
+build/
+dist/
+*.whl
+*.tar.gz
+
+# Package files
+*.zip
+*.tar
+*.tgz
+
+# Large files (keep structure, ignore large generated content)
+*.large
+*.bin
+*.dat
+resonance_os/data/corpora/*/large_*
+resonance_os/data/models/*/large_*
+
+# Generated content
+generated/
+output/
+results/
+
+# External dependencies
+node_modules/
+bower_components/
+
+# Configuration files with secrets
+.env.local
+.env.production
+config/secrets.json
+
+# Temporary testing files
+test_temp/
+temp_test/
+
+# Performance monitoring
+*.perf
+*.trace
+
+# Data processing intermediate files
+*.intermediate
+*.partial
+
+# User-specific
+*.user
+*.local
+
+# Backup and version control
+*.orig
+*.rej
+
+# System files
+*.sys
+*.system
+
+# Archive files
+*.archive
+*.old
+
+# Development logs
+dev.log
+debug.log
+error.log
+
+# Test artifacts
+test_artifacts/
+test_output/
+
+# Documentation drafts
+drafts/
+unpublished/
+
+# Experimental features
+experimental/
+sandbox/
+
+# Third-party integrations
+third_party/
+integrations/
+
+# User uploads
+uploads/
+user_files/
+
+# Cache directories
+.cache/
+__pycache__/
+
+# Monitoring and metrics
+metrics/
+monitoring/
+telemetry/
+
+# Build and deployment
+deployment/
+deploy/
+staging/
+
+# Local development
+local/
+dev/
+
+# Backup and recovery
+recovery/
+restore/

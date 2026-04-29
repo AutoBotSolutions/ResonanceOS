@@ -1,0 +1,153 @@
+{
+  "profile_system": {
+    "version": "1.0",
+    "description": "HRV Profile Configuration for ResonanceOS v6",
+    "created_at": "2026-03-09T12:16:00Z",
+    "last_updated": "2026-03-09T12:16:00Z"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "name": "Sentence Variance",
+      "description": "Variety in sentence lengths and structures",
+      "range": [0.0, 1.0],
+      "impact": "Readability and engagement"
+    },
+    "emotional_valence": {
+      "name": "Emotional Valence",
+      "description": "Positive/negative sentiment balance",
+      "range": [-1.0, 1.0],
+      "impact": "Reader emotional response"
+    },
+    "emotional_intensity": {
+      "name": "Emotional Intensity",
+      "description": "Strength of emotional content",
+      "range": [0.0, 1.0],
+      "impact": "Emotional engagement"
+    },
+    "assertiveness_index": {
+      "name": "Assertiveness Index",
+      "description": "Confidence and directness",
+      "range": [0.0, 1.0],
+      "impact": "Authority and credibility"
+    },
+    "curiosity_index": {
+      "name": "Curiosity Index",
+      "description": "Question and curiosity elements",
+      "range": [0.0, 1.0],
+      "impact": "Reader engagement and interest"
+    },
+    "metaphor_density": {
+      "name": "Metaphor Density",
+      "description": "Metaphorical language usage",
+      "range": [0.0, 1.0],
+      "impact": "Creativity and memorability"
+    },
+    "storytelling_index": {
+      "name": "Storytelling Index",
+      "description": "Narrative and storytelling elements",
+      "range": [0.0, 1.0],
+      "impact": "Narrative engagement"
+    },
+    "active_voice_ratio": {
+      "name": "Active Voice Ratio",
+      "description": "Active vs passive voice",
+      "range": [0.0, 1.0],
+      "impact": "Directness and dynamism"
+    }
+  },
+  "profile_validation": {
+    "required_fields": ["name", "version", "description", "target_hrv"],
+    "hrv_validation": {
+      "vector_length": 8,
+      "dimension_ranges": {
+        "sentence_variance": [0.0, 1.0],
+        "emotional_valence": [-1.0, 1.0],
+        "emotional_intensity": [0.0, 1.0],
+        "assertiveness_index": [0.0, 1.0],
+        "curiosity_index": [0.0, 1.0],
+        "metaphor_density": [0.0, 1.0],
+        "storytelling_index": [0.0, 1.0],
+        "active_voice_ratio": [0.0, 1.0]
+      }
+    },
+    "metadata_schema": {
+      "required": ["created_at", "created_by"],
+      "optional": ["updated_at", "tags", "use_case", "target_audience", "content_types"]
+    }
+  },
+  "tenant_management": {
+    "default_tenant": "default",
+    "tenant_isolation": true,
+    "max_profiles_per_tenant": 100,
+    "profile_versioning": true,
+    "backup_retention_days": 30
+  },
+  "performance_settings": {
+    "cache_enabled": true,
+    "cache_ttl_seconds": 300,
+    "max_cache_size": 1000,
+    "lazy_loading": true
+  },
+  "api_settings": {
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 1000,
+      "burst_size": 100
+    },
+    "authentication": {
+      "required": false,
+      "methods": ["api_key", "bearer_token"]
+    }
+  },
+  "monitoring": {
+    "metrics_enabled": true,
+    "log_level": "INFO",
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "default_profiles": {
+    "neutral_professional": {
+      "file": "default/neutral_professional.json",
+      "description": "Balanced professional tone"
+    },
+    "creative_storytelling": {
+      "file": "default/creative_storytelling.json",
+      "description": "Creative and narrative focus"
+    },
+    "marketing_enthusiastic": {
+      "file": "default/marketing_enthusiastic.json",
+      "description": "High-energy marketing content"
+    },
+    "tech_startup": {
+      "file": "default/tech_startup.json",
+      "description": "Technology and innovation focus"
+    },
+    "persuasive_sales": {
+      "file": "default/persuasive_sales.json",
+      "description": "Sales and conversion focused"
+    }
+  },
+  "profile_templates": {
+    "business": {
+      "base_profile": "neutral_professional",
+      "adjustments": {
+        "assertiveness_index": "+0.1",
+        "active_voice_ratio": "+0.1"
+      }
+    },
+    "creative": {
+      "base_profile": "creative_storytelling",
+      "adjustments": {
+        "metaphor_density": "+0.1",
+        "storytelling_index": "+0.1"
+      }
+    },
+    "technical": {
+      "base_profile": "tech_startup",
+      "adjustments": {
+        "sentence_variance": "-0.1",
+        "active_voice_ratio": "+0.1"
+      }
+    }
+  }
+}

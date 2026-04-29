@@ -1,0 +1,71 @@
+# ResonanceOS v6 Profiles .gitignore
+
+# Profile backups and temporary files
+*.backup
+*.tmp
+*.bak
+*~
+
+# Profile cache files
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log files
+*.log
+setup_log.txt
+
+# Tenant-specific sensitive data
+*/tenant_*/
+*/client_*/
+*/customer_*/
+
+# Environment-specific configurations
+.env
+.env.local
+.env.production
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+test_*.json
+temp_*.json
+sample_*.json
+
+# Performance data
+performance_*.json
+metrics_*.json
+analytics_*.json
+
+# Profile exports
+exports/
+*.export
+
+# Local development
+local/
+dev/
+development/
+
+# Documentation builds
+docs/_build/
+site/
+
+# Backup directories
+backups/
+old/

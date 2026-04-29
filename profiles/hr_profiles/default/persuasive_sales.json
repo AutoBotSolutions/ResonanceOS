@@ -1,0 +1,83 @@
+{
+  "name": "persuasive_sales",
+  "version": "1.0",
+  "description": "Sales and conversion focused profile designed to persuade, convert, and drive action",
+  "target_hrv": [0.6, 0.7, 0.8, 0.9, 0.5, 0.5, 0.6, 0.9],
+  "metadata": {
+    "created_at": "2026-03-09T12:16:00Z",
+    "created_by": "system",
+    "updated_at": "2026-03-09T12:16:00Z",
+    "tags": ["sales", "persuasive", "conversion", "action-oriented"],
+    "use_case": "Sales content and conversion optimization",
+    "target_audience": "Prospects, customers, leads",
+    "content_types": ["sales pages", "email campaigns", "proposals", "product descriptions"],
+    "emotional_tone": "Confident and persuasive",
+    "complexity_level": "Low-Medium",
+    "formality_level": "Informal to Semi-Formal"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "value": 0.6,
+      "description": "Balanced sentence variety for readability and impact",
+      "target_range": "0.5-0.7"
+    },
+    "emotional_valence": {
+      "value": 0.7,
+      "description": "Strong positive emotional tone for persuasion",
+      "target_range": "0.6-0.8"
+    },
+    "emotional_intensity": {
+      "value": 0.8,
+      "description": "High emotional intensity for engagement",
+      "target_range": "0.7-0.9"
+    },
+    "assertiveness_index": {
+      "value": 0.9,
+      "description": "Very high confidence and directness",
+      "target_range": "0.8-1.0"
+    },
+    "curiosity_index": {
+      "value": 0.5,
+      "description": "Moderate curiosity to maintain focus on action",
+      "target_range": "0.4-0.6"
+    },
+    "metaphor_density": {
+      "value": 0.5,
+      "description": "Moderate creative elements for persuasion",
+      "target_range": "0.4-0.6"
+    },
+    "storytelling_index": {
+      "value": 0.6,
+      "description": "Strong narrative for connection and trust",
+      "target_range": "0.5-0.7"
+    },
+    "active_voice_ratio": {
+      "value": 0.9,
+      "description": "Very high active voice for direct action",
+      "target_range": "0.8-1.0"
+    }
+  },
+  "generation_guidelines": {
+    "sentence_length": {
+      "average": "12-18 words",
+      "range": "6-25 words"
+    },
+    "paragraph_length": {
+      "average": "2-4 sentences",
+      "range": "1-6 sentences"
+    },
+    "vocabulary": "Action-oriented and benefit-focused",
+    "tone": "Confident and persuasive",
+    "style": "Direct, compelling, and action-driven"
+  },
+  "quality_metrics": {
+    "readability_score": "Target: 60-70 (Flesch-Kincaid)",
+    "engagement_rate": "Target: 75-85%",
+    "completion_rate": "Target: 65-75%"
+  },
+  "compatibility": {
+    "resonance_os_version": "v6.0+",
+    "api_version": "1.0+",
+    "dependencies": []
+  }
+}

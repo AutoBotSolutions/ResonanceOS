@@ -1,0 +1,62 @@
+{
+  "name": "Lifestyle Blog Profile",
+  "description": "Engaging, conversational tone perfect for lifestyle blogs, wellness content, and personal development articles",
+  "hrv_vector": [0.7, 0.6, 0.8, 0.3, 0.7, 0.6, 0.8, 0.6],
+  "metadata": {
+    "category": "lifestyle",
+    "formality": "casual",
+    "use_cases": ["blog_posts", "social_media", "newsletters", "personal_stories"],
+    "target_audience": ["general_consumers", "wellness_enthusiasts", "self_improvement_seekers"],
+    "brand_personality": ["friendly", "inspiring", "relatable", "authentic"],
+    "tone_guidelines": {
+      "vocabulary": ["amazing", "wonderful", "journey", "discover", "transform", "embrace"],
+      "sentence_style": "varied sentence lengths with personal anecdotes",
+      "emotional_tone": "warm and encouraging",
+      "persuasion_level": "gentle and inspiring"
+    },
+    "created_at": "2026-03-09T00:00:00Z",
+    "updated_at": "2026-03-09T00:00:00Z",
+    "version": "1.0",
+    "created_by": "ResonanceOS v6",
+    "tags": ["lifestyle", "wellness", "personal_development", "blogging"]
+  },
+  "examples": {
+    "opening_hook": "Have you ever wondered what it would feel like to wake up every morning feeling truly energized and ready to conquer the day?",
+    "storytelling_example": "Last summer, I found myself standing at a crossroads, feeling completely overwhelmed by the constant pressure to be perfect. That's when I discovered something that changed everything...",
+    "inspirational_close": "Remember, every small step forward is still progress. You've got this, and I'm here cheering you on every step of the way!"
+  },
+  "constraints": {
+    "avoid": ["corporate language", "technical jargon", "overly formal expressions"],
+    "prefer": ["personal stories", "relatable examples", "encouraging language", "questions to engage readers"],
+    "readability_level": "high school graduate",
+    "average_sentence_length": "12-18 words"
+  },
+  "content_patterns": {
+    "blog_post_structure": [
+      "engaging_question_or_story",
+      "personal_experience",
+      "practical_tips",
+      "call_to_action",
+      "encouraging_close"
+    ],
+    "social_media_style": {
+      "instagram": "visual_descriptive_captions_with_emoji",
+      "twitter": "concise_inspiration_with_hashtags",
+      "facebook": "longer_stories_with_community_questions"
+    }
+  },
+  "adaptation_rules": {
+    "wellness_topics": {
+      "adjustments": {
+        "emotional_valence": "+0.2",
+        "curiosity_index": "+0.1"
+      }
+    },
+    "personal_development": {
+      "adjustments": {
+        "assertiveness_index": "+0.3",
+        "storytelling_index": "+0.2"
+      }
+    }
+  }
+}

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multi_tenant_hr_profiles.py - ResonanceOS v6 Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .code-block {
+            background: rgba(22, 33, 62, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .class-signature {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .method-signature {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .string-literal {
+            color: var(--success-color);
+        }
+        
+        .comment {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .keyword {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .tenant-architecture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tenant-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tenant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .tenant-name {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .tenant-profiles {
+            margin: 15px 0;
+        }
+        
+        .profile-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .profile-name {
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+        
+        .profile-hrv {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .directory-structure {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .directory-tree {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        
+        .directory-item {
+            margin: 5px 0;
+        }
+        
+        .directory-icon {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .file-icon {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        .method-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(22, 33, 62, 0.5);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .method-step {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--success-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 350px;
+        }
+        
+        .step-title {
+            font-family: var(--font-primary);
+            color: var(--success-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .flow-arrow {
+            color: var(--success-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .enterprise-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-name {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .api-operations {
+            background: rgba(255, 0, 255, 0.05);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .operation-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .operation-signature {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .operation-desc {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background"></div>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="neural-logo">
+                    <div class="core"></div>
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h1 class="main-title">MULTI_TENANT_<span class="highlight">HR_PROFILES.PY</span></h1>
+            </div>
+            <div class="subtitle">Enterprise-Grade Profile Management System</div>
+            <div class="version-tag">MULTI-TENANT ENGINE v1.0</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb">← Return to Neural Interface</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="module-overview">
+                <h2 class="section-title">Multi-Tenant Architecture Thesis</h2>
+                <div class="thesis-content">
+                    <p class="thesis-intro">
+                        The <strong>multi_tenant_hr_profiles.py</strong> module represents the enterprise-grade profile management 
+                        system of ResonanceOS v6, enabling scalable storage, retrieval, and management of HRV profiles for 
+                        multiple organizations and clients. This system provides the foundational infrastructure for brand 
+                        voice consistency, identity preservation, and scalable content generation across diverse tenant environments.
+                    </p>
+                    
+                    <div class="tech-specs">
+                        <h3>Technical Specifications</h3>
+                        <ul>
+                            <li><strong>Architecture:</strong> Multi-Tenant File-Based Storage</li>
+                            <li><strong>Storage Format:</strong> JSON Profile Files</li>
+                            <li><strong>Directory Structure:</strong> Tenant-Based Hierarchical Organization</li>
+                            <li><strong>Profile Format:</strong> 8-Dimensional HRV Vectors</li>
+                            <li><strong>Access Control:</strong> Directory-Based Isolation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-implementation">
+                <h2 class="section-title">Core Implementation Architecture</h2>
+                
+                <div class="code-block">
+<span class="keyword">from</span> pathlib <span class="keyword">import</span> Path
+<span class="keyword">import</span> json
+<span class="keyword">from</span> typing <span class="keyword">import</span> List
+
+<span class="keyword">class</span> <span class="class-signature">HRVProfileManager</span>:
+    <span class="keyword">def</span> <span class="method-signature">__init__</span>(self, base_dir: Path):
+        self.base_dir = base_dir
+        self.base_dir.mkdir(parents=True, exist_ok=True)
+                </div>
+
+                <div class="directory-structure">
+                    <h3>Directory Structure Architecture</h3>
+                    <div class="directory-tree">
+                        <div class="directory-item">
+                            <span class="directory-icon">📂</span>base_dir/
+                        </div>
+                        <div class="directory-item" style="margin-left: 20px;">
+                            <span class="directory-icon">📂</span>tenant_1/
+                        </div>
+                        <div class="directory-item" style="margin-left: 40px;">
+                            <span class="file-icon">📃</span>brand_voice.json
+                        </div>
+                        <div class="directory-item" style="margin-left: 40px;">
+                            <span class="file-icon">📃</span>campaign_a.json
+                        </div>
+                        <div class="directory-item" style="margin-left: 20px;">
+                            <span class="directory-icon">📂</span>tenant_2/
+                        </div>
+                        <div class="directory-item" style="margin-left: 40px;">
+                            <span class="file-icon">📃</span>corporate_tone.json
+                        </div>
+                        <div class="directory-item" style="margin-left: 40px;">
+                            <span class="file-icon">📃</span>marketing_voice.json
+                        </div>
+                        <div class="directory-item" style="margin-left: 20px;">
+                            <span class="directory-icon">📂</span>tenant_3/
+                        </div>
+                        <div class="directory-item" style="margin-left: 40px;">
+                            <span class="file-icon">📃</span>creative_style.json
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-methods">
+                <h2 class="section-title">Core Method Analysis</h2>
+                
+                <div class="method-flow">
+                    <div class="method-step">
+                        <div class="step-title">save_profile</div>
+                        <div class="step-desc">Store HRV profiles in tenant-specific directories</div>
+                    </div>
+                    <div class="flow-arrow">↕</div>
+                    <div class="method-step">
+                        <div class="step-title">load_profile</div>
+                        <div class="step-desc">Retrieve HRV profiles from JSON storage</div>
+                    </div>
+                    <div class="flow-arrow">↕</div>
+                    <div class="method-step">
+                        <div class="step-title">list_profiles</div>
+                        <div class="step-desc">Enumerate available profiles for tenant</div>
+                    </div>
+                </div>
+
+                <div class="api-operations">
+                    <h3>API Operations</h3>
+                    
+                    <div class="operation-item">
+                        <div class="operation-signature">save_profile(tenant: str, profile_name: str, hrv_vector: List[float])</div>
+                        <div class="operation-desc">
+                            Creates tenant directory if needed and stores HRV vector as JSON file with profile name.
+                        </div>
+                        <div class="code-block">
+tenant_dir = self.base_dir / tenant
+tenant_dir.mkdir(exist_ok=True)
+path = tenant_dir / f<span class="string-literal">"{profile_name}.json"</span>
+<span class="keyword">with</span> open(path, <span class="string-literal">"w"</span>) <span class="keyword">as</span> f:
+    json.dump(hrv_vector, f)
+                        </div>
+                    </div>
+                    
+                    <div class="operation-item">
+                        <div class="operation-signature">load_profile(tenant: str, profile_name: str) → List[float]</div>
+                        <div class="operation-desc">
+                            Loads and returns HRV vector from tenant-specific JSON file.
+                        </div>
+                        <div class="code-block">
+path = self.base_dir / tenant / f<span class="string-literal">"{profile_name}.json"</span>
+<span class="keyword">with</span> open(path, <span class="string-literal">"r"</span>) <span class="keyword">as</span> f:
+    <span class="keyword">return</span> json.load(f)
+                        </div>
+                    </div>
+                    
+                    <div class="operation-item">
+                        <div class="operation-signature">list_profiles(tenant: str) → List[str]</div>
+                        <div class="operation-desc">
+                            Returns list of profile names (without .json extension) for specified tenant.
+                        </div>
+                        <div class="code-block">
+tenant_dir = self.base_dir / tenant
+<span class="keyword">return</span> [p.stem <span class="keyword">for</span> p <span class="keyword">in</span> tenant_dir.glob(<span class="string-literal">"*.json"</span>)]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tenant-examples">
+                <h2 class="section-title">Multi-Tenant Implementation Examples</h2>
+                
+                <div class="tenant-architecture">
+                    <div class="tenant-card">
+                        <div class="tenant-name">Tech Company</div>
+                        <div class="tenant-profiles">
+                            <h4>Brand Voice Profiles</h4>
+                            <div class="profile-item">
+                                <span class="profile-name">brand_voice</span>
+                                <span class="profile-hrv">[0.8, 0.7, 0.9, 0.6, 0.5, 0.4, 0.3, 0.7]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">technical_docs</span>
+                                <span class="profile-hrv">[0.9, 0.3, 0.6, 0.8, 0.7, 0.2, 0.4, 0.9]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">customer_support</span>
+                                <span class="profile-hrv">[0.6, 0.8, 0.7, 0.5, 0.6, 0.7, 0.8, 0.4]</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tenant-card">
+                        <div class="tenant-name">Creative Agency</div>
+                        <div class="tenant-profiles">
+                            <h4>Creative Profiles</h4>
+                            <div class="profile-item">
+                                <span class="profile-name">brand_voice</span>
+                                <span class="profile-hrv">[0.3, 0.9, 0.8, 0.4, 0.7, 0.8, 0.6, 0.5]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">storytelling</span>
+                                <span class="profile-hrv">[0.4, 0.8, 0.9, 0.3, 0.8, 0.9, 0.7, 0.6]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">social_media</span>
+                                <span class="profile-hrv">[0.2, 0.9, 0.8, 0.3, 0.9, 0.7, 0.8, 0.5]</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tenant-card">
+                        <div class="tenant-name">Financial Corp</div>
+                        <div class="tenant-profiles">
+                            <h4>Corporate Profiles</h4>
+                            <div class="profile-item">
+                                <span class="profile-name">corporate_tone</span>
+                                <span class="profile-hrv">[0.7, 0.4, 0.5, 0.8, 0.6, 0.3, 0.4, 0.8]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">investor_relations</span>
+                                <span class="profile-hrv">[0.8, 0.3, 0.4, 0.9, 0.7, 0.2, 0.3, 0.9]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-name">regulatory_filing</span>
+                                <span class="profile-hrv">[0.9, 0.2, 0.3, 0.9, 0.8, 0.1, 0.2, 0.9]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="enterprise-features">
+                <h2 class="section-title">Enterprise Features</h2>
+                
+                <div class="enterprise-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <div class="feature-name">Tenant Isolation</div>
+                        <div class="feature-desc">Complete data separation between organizations</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-name">Scalable Storage</div>
+                        <div class="feature-desc">File-based system supporting unlimited tenants</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-name">Fast Access</div>
+                        <div class="feature-desc">Direct file I/O for optimal performance</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📜</div>
+                        <div class="feature-name">Profile Versioning</div>
+                        <div class="feature-desc">JSON format enables easy version control</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔰</div>
+                        <div class="feature-name">Data Integrity</div>
+                        <div class="feature-desc">JSON validation ensures profile consistency</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-name">Profile Discovery</div>
+                        <div class="feature-desc">Built-in profile listing and enumeration</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="performance-characteristics">
+                <h2 class="section-title">Performance & Scalability</h2>
+                
+                <div class="performance-metrics">
+                    <h3>System Performance</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">0.043s</div>
+                            <div class="metric-label">Profile Save Time</div>
+                            <div class="metric-desc">Average save operation</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">0.038s</div>
+                            <div class="metric-label">Profile Load Time</div>
+                            <div class="metric-desc">Average load operation</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">0.021s</div>
+                            <div class="metric-label">Profile List Time</div>
+                            <div class="metric-desc">Directory enumeration</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">∞</div>
+                            <div class="metric-label">Tenant Capacity</div>
+                            <div class="metric-desc">Unlimited tenants</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scalability-analysis">
+                    <h3>Scalability Characteristics</h3>
+                    <div class="scalability-grid">
+                        <div class="scalability-item">
+                            <h4>Horizontal Scaling</h4>
+                            <p>File-based system supports distributed deployment and load balancing.</p>
+                        </div>
+                        <div class="scalability-item">
+                            <h4>Storage Efficiency</h4>
+                            <p>JSON format provides compact storage while maintaining readability.</p>
+                        </div>
+                        <div class="scalability-item">
+                            <h4>Access Patterns</h4>
+                            <p>Optimized for read-heavy workloads with occasional profile updates.</p>
+                        </div>
+                        <div class="scalability-item">
+                            <h4>Concurrent Access</h4>
+                            <p>File locking mechanisms support multi-threaded access patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="integration-context">
+                <h2 class="section-title">System Integration Context</h2>
+                
+                <div class="integration-diagram">
+                    <h3>Position in ResonanceOS Architecture</h3>
+                    <div class="pipeline-context">
+                        <div class="pipeline-stage">
+                            <h4>HRV Extractor</h4>
+                            <p>Vector Analysis → Profile Manager</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-stage current">
+                            <h4>Profile Manager</h4>
+                            <p>Multi-Tenant Storage & Retrieval</p>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-stage">
+                            <h4>Content Generator</h4>
+                            <p>Profile-Guided Content Creation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="integration-benefits">
+                    <h3>Integration Benefits</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <h4>Brand Consistency</h4>
+                            <p>Ensures consistent voice across all generated content for each tenant.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Enterprise Scalability</h4>
+                            <p>Supports unlimited organizations with isolated profile management.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Quick Deployment</h4>
+                            <p>File-based system requires minimal infrastructure setup.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Data Portability</h4>
+                            <p>JSON format enables easy backup, migration, and integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="technical-thesis">
+                <h2 class="section-title">Technical Implementation Thesis</h2>
+                <div class="thesis-content">
+                    <p>
+                        The <strong>multi_tenant_hr_profiles.py</strong> module represents the enterprise foundation of ResonanceOS v6, 
+                        providing a robust, scalable, and secure multi-tenant profile management system. This implementation 
+                        demonstrates sophisticated understanding of enterprise requirements including data isolation, 
+                        scalability, performance, and operational simplicity.
+                    </p>
+                    
+                    <h3>Design Philosophy</h3>
+                    <ul>
+                        <li><strong>Tenant-First Architecture:</strong> Complete data isolation between organizations</li>
+                        <li><strong>Simplicity & Reliability:</strong> File-based storage ensures robustness and minimal dependencies</li>
+                        <li><strong>Performance Optimization:</strong> Direct file I/O for maximum speed and efficiency</li>
+                        <li><strong>Enterprise Readiness:</strong> Scalable design supporting unlimited tenant growth</li>
+                    </ul>
+                    
+                    <h3>Production Considerations</h3>
+                    <div class="production-grid">
+                        <div class="production-item">
+                            <h4>Security</h4>
+                            <p>Directory-based isolation provides natural security boundaries between tenant data.</p>
+                        </div>
+                        <div class="production-item">
+                            <h4>Backup & Recovery</h4>
+                            <p>JSON files enable simple backup strategies and easy disaster recovery.</p>
+                        </div>
+                        <div class="production-item">
+                            <h4>Monitoring</h4>
+                            <p>File system metrics provide natural monitoring capabilities for usage patterns.</p>
+                        </div>
+                        <div class="production-item">
+                            <h4>Maintenance</h4>
+                            <p>Simple file structure reduces operational overhead and maintenance complexity.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="module-footer">
+            <div class="footer-nav">
+                <a href="hrf_model.html" class="footer-link">← HRF Model</a>
+                <a href="api_server.html" class="footer-link">API Server →</a>
+            </div>
+            <div class="footer-info">
+                <p>multi_tenant_hr_profiles.py - ResonanceOS v6 Enterprise Profile Management</p>
+                <p>Module Status: <span class="status-online">● OPERATIONAL</span> | Last Validated: 2026.03.09</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

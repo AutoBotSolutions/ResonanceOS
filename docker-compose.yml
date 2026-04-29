@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  resonance_os_v6:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HRV_TENANT_DIR=./profiles/hr_profiles

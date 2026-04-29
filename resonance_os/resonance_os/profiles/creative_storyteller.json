@@ -1,0 +1,45 @@
+{
+  "name": "Creative Storyteller",
+  "description": "Creative and engaging writing style with narrative flair",
+  "resonance_vector": {
+    "values": [0.7, 0.8, 0.8, 0.7, 0.9, 0.6, 0.5, 0.8, 0.9, 0.6],
+    "dimensions": [
+      "lexical_density",
+      "emotional_valence", 
+      "cadence_variability",
+      "sentence_entropy",
+      "metaphor_frequency",
+      "abstraction_level",
+      "assertiveness_score",
+      "rhythm_signature",
+      "narrative_intensity_curve",
+      "cognitive_load_index"
+    ],
+    "confidence": 0.85,
+    "created_at": "2024-01-01T00:00:00"
+  },
+  "emotional_curve": [0.4, 0.6, 0.9, 0.7, 0.5],
+  "cadence_pattern": [0.3, 0.7, 0.9, 0.6],
+  "abstraction_preference": 0.6,
+  "metadata": {
+    "description": "Engaging creative writing style with strong narrative elements and emotional resonance",
+    "industry": "creative",
+    "target_audience": "general readers",
+    "tone_guidelines": [
+      "Emotionally engaging",
+      "Narrative-driven",
+      "Figurative language",
+      "Dynamic pacing",
+      "Character development"
+    ],
+    "use_cases": [
+      "Creative writing",
+      "Storytelling",
+      "Marketing content",
+      "Blog posts",
+      "Social media content"
+    ]
+  },
+  "created_at": "2024-01-01T00:00:00",
+  "updated_at": "2024-01-01T00:00:00"
+}

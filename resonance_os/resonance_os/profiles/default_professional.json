@@ -1,0 +1,43 @@
+{
+  "name": "Default Professional",
+  "description": "Standard professional writing style with balanced characteristics",
+  "resonance_vector": {
+    "values": [0.6, 0.5, 0.5, 0.5, 0.4, 0.5, 0.6, 0.5, 0.5, 0.5],
+    "dimensions": [
+      "lexical_density",
+      "emotional_valence", 
+      "cadence_variability",
+      "sentence_entropy",
+      "metaphor_frequency",
+      "abstraction_level",
+      "assertiveness_score",
+      "rhythm_signature",
+      "narrative_intensity_curve",
+      "cognitive_load_index"
+    ],
+    "confidence": 0.8,
+    "created_at": "2024-01-01T00:00:00"
+  },
+  "emotional_curve": [0.5, 0.5, 0.5, 0.5, 0.5],
+  "cadence_pattern": [0.5, 0.5, 0.5, 0.5],
+  "abstraction_preference": 0.5,
+  "metadata": {
+    "description": "Balanced professional writing style suitable for general business communication",
+    "industry": "general",
+    "target_audience": "professionals",
+    "tone_guidelines": [
+      "Professional and clear",
+      "Balanced formality",
+      "Direct communication",
+      "Logical structure"
+    ],
+    "use_cases": [
+      "Business emails",
+      "Professional reports",
+      "Technical documentation",
+      "Corporate communication"
+    ]
+  },
+  "created_at": "2024-01-01T00:00:00",
+  "updated_at": "2024-01-01T00:00:00"
+}

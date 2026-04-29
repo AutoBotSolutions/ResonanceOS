@@ -1,0 +1,107 @@
+{
+  "profiles": {
+    "neutral_professional": {
+      "name": "Neutral Professional",
+      "description": "Balanced, professional tone suitable for business communications",
+      "hrv_vector": [0.5, 0.0, 0.3, 0.6, 0.4, 0.2, 0.3, 0.7],
+      "metadata": {
+        "category": "business",
+        "formality": "professional",
+        "use_cases": ["reports", "emails", "documentation"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "creative_storytelling": {
+      "name": "Creative Storytelling",
+      "description": "Engaging, narrative style with high storytelling and metaphor density",
+      "hrv_vector": [0.8, 0.6, 0.9, 0.3, 0.8, 0.7, 0.9, 0.6],
+      "metadata": {
+        "category": "creative",
+        "formality": "casual",
+        "use_cases": ["stories", "blog_posts", "marketing"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "technical_academic": {
+      "name": "Technical Academic",
+      "description": "Formal, precise tone suitable for academic and technical writing",
+      "hrv_vector": [0.3, -0.2, 0.2, 0.8, 0.3, 0.1, 0.2, 0.8],
+      "metadata": {
+        "category": "academic",
+        "formality": "formal",
+        "use_cases": ["papers", "theses", "technical_docs"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "marketing_enthusiastic": {
+      "name": "Marketing Enthusiastic",
+      "description": "High-energy, positive tone for marketing and promotional content",
+      "hrv_vector": [0.7, 0.9, 0.8, 0.5, 0.7, 0.5, 0.6, 0.6],
+      "metadata": {
+        "category": "marketing",
+        "formality": "casual",
+        "use_cases": ["advertisements", "social_media", "promotions"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "empathetic_support": {
+      "name": "Empathetic Support",
+      "description": "Caring, supportive tone for customer service and support content",
+      "hrv_vector": [0.4, 0.3, 0.6, 0.2, 0.5, 0.4, 0.5, 0.7],
+      "metadata": {
+        "category": "support",
+        "formality": "semi-formal",
+        "use_cases": ["customer_service", "help_docs", "faqs"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "news_journalistic": {
+      "name": "News Journalistic",
+      "description": "Objective, informative tone suitable for news and journalism",
+      "hrv_vector": [0.4, -0.1, 0.3, 0.6, 0.4, 0.2, 0.4, 0.7],
+      "metadata": {
+        "category": "journalism",
+        "formality": "formal",
+        "use_cases": ["articles", "reports", "briefings"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "educational_tutorial": {
+      "name": "Educational Tutorial",
+      "description": "Clear, instructional tone for educational content and tutorials",
+      "hrv_vector": [0.5, 0.1, 0.4, 0.5, 0.6, 0.3, 0.4, 0.7],
+      "metadata": {
+        "category": "education",
+        "formality": "semi-formal",
+        "use_cases": ["tutorials", "guides", "textbooks"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    },
+    "persuasive_sales": {
+      "name": "Persuasive Sales",
+      "description": "Convincing, action-oriented tone for sales and conversion content",
+      "hrv_vector": [0.6, 0.7, 0.7, 0.7, 0.6, 0.4, 0.5, 0.6],
+      "metadata": {
+        "category": "sales",
+        "formality": "business",
+        "use_cases": ["sales_pages", "proposals", "pitches"],
+        "created_at": "2026-03-09T00:00:00Z",
+        "version": "1.0"
+      }
+    }
+  },
+  "metadata": {
+    "total_profiles": 8,
+    "categories": ["business", "creative", "academic", "marketing", "support", "journalism", "education", "sales"],
+    "last_updated": "2026-03-09T00:00:00Z",
+    "version": "1.0",
+    "description": "Default HRV profiles for ResonanceOS v6"
+  }
+}

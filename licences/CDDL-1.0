@@ -1,0 +1,216 @@
+COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
+
+1. Definitions.
+
+1.1. "Contributor" means each individual or entity that creates or
+     contributes to the creation of Modifications.
+
+1.2. "Contributor Version" means the combination of the Original
+     Software, prior Modifications used by a Contributor, and the
+     Modifications made by that particular Contributor.
+
+1.3. "Covered Software" means (a) the Original Software, or (b)
+     Modifications, or (c) the combination of the Original Software
+     and Modifications, in each case including portions thereof.
+
+1.4. "Executable" means the Covered Software in form other than
+     Source Code, provided that such form is not merely Source Code with
+     substantial presentation modifications imposed by the means of
+     file formatting.
+
+1.5. "Initial Developer" means the individual or entity that first
+     makes Original Software available under this License.
+
+1.6. "Larger Work" means a work which combines Covered Software or
+     portions thereof with code not governed by the terms of this
+     License.
+
+1.7. "License" means this document.
+
+1.8. "Licensable" means having the right to grant, to the maximum
+     extent possible, whether at the time of the initial grant or
+     subsequently acquired, any and all of the rights conveyed by this
+     License.
+
+1.9. "Modifications" means any file modification that results in Covered
+     Software being different from the Original Software, including, but
+     not limited to, the addition of files or the deletion of files.
+
+1.10. "Original Software" means the Source Code and Executable
+     versions of the software made available under this License.
+
+1.11. "Patent Claims" means any patent claim(s), now owned or hereafter
+     acquired, including without limitation, method, process, and apparatus
+     claims, in any patent Licensable by such Contributor that would be
+     infringed, but for the grant of the License, by the making,
+     using, selling, offering for sale, having made, import, or transfer
+     of either its Contributions or its Contributor Version.
+
+1.12. "Secondary License" means either the GNU General Public License,
+     Version 2.0, the GNU Lesser General Public License, Version 2.1,
+     the GNU Affero General Public License, Version 3.0, or any later
+     versions of those licenses.
+
+1.13. "Source Code" means the form of the software preferred for
+     making modifications, including but not limited to software source
+     code, documentation source, and configuration files.
+
+1.14. "You" (or "Your") means an individual or a legal entity
+     exercising rights under this License. For legal entities, "You"
+     includes any entity that controls, is controlled by, or is under
+     common control with You. For purposes of this definition,
+     "control" means (a) the power, direct or indirect, to cause the
+     direction or management of such entity, whether by contract or
+     otherwise, or (b) ownership of more than fifty percent (50%) of
+     the outstanding shares or beneficial ownership of such entity.
+
+2. License Grants.
+
+2.1. The Initial Developer Grant.
+
+Conditioned upon Your compliance with Section 3.1 below and subject to
+third party intellectual property claims, the Initial Developer hereby
+grants You a world-wide, royalty-free, non-exclusive license:
+
+(a) under intellectual property rights (other than patent or trademark)
+    Licensable by Initial Developer to use, reproduce, modify, display,
+    perform, sublicense and distribute the Original Software (or portions
+    thereof) with or without Modifications, and/or as part of a Larger
+    Work; and
+
+(b) under the Patent Claims of Initial Developer to make, use, sell,
+    offer for sale, have made, import, and otherwise transfer the
+    Original Software, where such license applies only to those Patent
+    Claims that are necessarily infringed by the Original Software
+    alone, and not to any other Patent Claims that would be infringed
+    as a result of such combination.
+
+2.2. Contributor Grant.
+
+Conditioned upon Your compliance with Section 3.1 below and subject to
+third party intellectual property claims, each Contributor hereby
+grants You a world-wide, royalty-free, non-exclusive license:
+
+(a) under intellectual property rights (other than patent or trademark)
+    Licensable by Contributor, to use, reproduce, modify, display,
+    perform, sublicense and distribute the Modifications created by such
+    Contributor (or portions thereof) either on an unmodified basis,
+    with other Modifications, as Covered Software and/or as part of a
+    Larger Work; and
+
+(b) under the Patent Claims of Contributor to make, use, sell, offer
+    for sale, have made, import, and otherwise transfer the
+    Modifications of such Contributor, where such license applies only
+    to those Patent Claims that are necessarily infringed by the
+    Modifications alone, and not to any other Patent Claims that would
+    be infringed as a result of such combination.
+
+3. Distribution Obligations.
+
+3.1. Availability of Source Code.
+
+Any Covered Software that You distribute or otherwise make available
+in Executable form must also be made available in Source Code form and
+that Source Code must be distributed only under the terms of this
+License. You must include a copy of this License with every copy of
+the Source Code form of the Covered Software You distribute or
+otherwise make available. You must inform recipients of any such
+Covered Software in Executable form as to how they can obtain such
+Covered Software in Source Code form in a reasonable manner on or
+through a medium customarily used for exchanging software.
+
+3.2. Modifications.
+
+The Modifications that You create or to which You contribute are
+governed by the terms of this License. You represent that You are the
+owner of the Modifications or that you have sufficient rights to grant
+the rights conveyed by this License.
+
+3.3. Required Notices.
+
+You must include a notice in each Covered Software that You distribute
+or otherwise make available that identifies that You are the owner of
+the Modifications or that you have sufficient rights to grant the rights
+conveyed by this License.
+
+3.4. Application of Additional Terms.
+
+You may choose to offer, and to charge a fee for, warranty, support,
+indemnity or liability obligations to one or more recipients of Covered
+Software. However, You may do so only on Your own behalf, and not on
+behalf of any other Contributor, and only if You agree to indemnify,
+defend, and hold each Contributor harmless for any liability incurred
+or claims asserted against such Contributor as a result of warranty,
+support, indemnity, or liability terms You offer.
+
+4. Versions of the License.
+
+4.1. New Versions.
+
+Sun Microsystems, Inc. may publish revised and/or new versions of
+this License from time to time. Each version will be given a
+distinguishing version number.
+
+4.2. Effect of New Versions.
+
+You may distribute Covered Software under the terms of the version of
+the License under which You originally received the Covered Software,
+or under the terms of any subsequent version published by Sun
+Microsystems, Inc.
+
+5. Disclaimer of Warranty.
+
+COVERED SOFTWARE IS PROVIDED UNDER THIS LICENSE ON AN "AS IS"
+BASIS, WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF
+NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+You are solely responsible for determining the appropriateness of
+using or redistributing the Covered Software and assume any risks
+associated with Your exercise of rights under this License.
+
+6. Limitation of Liability.
+
+IN NO EVENT AND UNDER NO LEGAL THEORY, WHETHER TORT (INCLUDING
+NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL ANY CONTRIBUTOR, OR ANYONE
+WHO DISTRIBUTES COVERED SOFTWARE AS PERMITTED ABOVE, BE LIABLE TO YOU
+FOR DAMAGES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR
+CONSEQUENTIAL DAMAGES OF ANY CHARACTER INCLUDING, WITHOUT LIMITATION,
+DAMAGES FOR LOST PROFITS, LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER
+FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER COMMERCIAL DAMAGES OR
+LOSSES, EVEN IF SUCH CONTRIBUTOR SHALL HAVE BEEN INFORMED OF THE
+POSSIBILITY OF SUCH DAMAGES. This limitation of liability shall not
+apply to liability for death or personal injury resulting from such
+Contributor's negligence.
+
+7. Trademark.
+
+This License does not grant permission to use the trade names,
+trademarks, service marks, or product names of the Contributor,
+except as required for reasonable and customary use in describing the
+origin of the Covered Software and reproducing the content of the
+NOTICE file.
+
+8. Termination.
+
+8.1. This License and the rights granted hereunder will terminate
+automatically if You fail to comply with terms herein and fail to cure
+such breach within 30 days of becoming aware of the breach.
+
+8.2. If You assert a patent infringement claim against any entity
+alleging that the Covered Software itself (excluding combinations with
+other software or hardware) infringes such patent, then any patent
+licenses granted to You under this License for that Covered Software
+shall terminate as of the date such litigation is filed.
+
+9. Miscellaneous.
+
+This License represents the complete agreement concerning the subject
+matter hereof. If any provision of this License is held to be
+unenforceable, such provision shall be reformed only to the extent
+necessary to make it enforceable.
+
+This License is governed by the laws of the State of California and
+the intellectual property laws of the United States of America.
+
+Copyright (C) <year> Robert Trenaman | (Software Customs) Auto Bot Solution
+Contact: autobotsolution@gmail.com | Flushing MI

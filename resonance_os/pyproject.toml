@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resonance-os"
+version = "0.1.0"
+description = "Resonance-Adaptive Article Engine with Real-time Tonal Alignment"
+authors = [
+    {name = "Trenaman", email = "trenaman@example.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.3.0",
+    "nltk>=3.8.0",
+    "textblob>=0.17.1",
+    "spacy>=3.6.0",
+    "transformers>=4.34.0",
+    "torch>=2.0.0",
+    "pydantic>=2.4.0",
+    "python-dotenv>=1.0.0",
+    "click>=8.1.0",
+    "rich>=13.6.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "plotly>=5.17.0",
+    "pandas>=2.1.0",
+    "tqdm>=4.66.0",
+    "aiofiles>=23.2.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.9.0",
+    "isort>=5.12.0",
+    "flake8>=6.1.0",
+    "mypy>=1.6.0",
+    "pre-commit>=3.4.0",
+]
+
+[project.scripts]
+resonance-os = "resonance_os.cli.main:main"
+
+[project.urls]
+Homepage = "https://github.com/trenaman/resonance-os"
+Repository = "https://github.com/trenaman/resonance-os"
+Documentation = "https://resonance-os.readthedocs.io"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["resonance_os*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

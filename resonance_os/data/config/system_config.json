@@ -1,0 +1,116 @@
+{
+  "system": {
+    "name": "ResonanceOS v6",
+    "version": "6.0.0",
+    "description": "Human-Resonant AI Writing Engine",
+    "debug": false,
+    "log_level": "INFO"
+  },
+  "hrv": {
+    "dimensions": 8,
+    "dimension_names": [
+      "sentence_variance",
+      "emotional_valence",
+      "emotional_intensity",
+      "assertiveness_index",
+      "curiosity_index",
+      "metaphor_density",
+      "storytelling_index",
+      "active_voice_ratio"
+    ],
+    "default_threshold": 0.92,
+    "drift_threshold": 0.05,
+    "max_corrections": 3
+  },
+  "generation": {
+    "default_temperature": 0.7,
+    "default_top_p": 0.9,
+    "default_max_tokens": 2048,
+    "min_paragraph_length": 20,
+    "max_paragraph_length": 500,
+    "default_paragraphs": 3,
+    "refinement_iterations": 1
+  },
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "workers": 4,
+    "timeout": 30,
+    "max_request_size": "10MB",
+    "cors_enabled": true,
+    "cors_origins": ["*"]
+  },
+  "profiles": {
+    "default_directory": "./profiles/hr_profiles",
+    "backup_directory": "./profiles/backups",
+    "auto_backup": true,
+    "backup_interval": 3600,
+    "max_backups": 10,
+    "profile_format": "json",
+    "compression": true
+  },
+  "logging": {
+    "log_directory": "./logs",
+    "log_rotation": true,
+    "max_log_size": "100MB",
+    "max_log_files": 10,
+    "log_format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "performance_logging": true,
+    "error_tracking": true
+  },
+  "performance": {
+    "cache_enabled": true,
+    "cache_size": "1GB",
+    "cache_ttl": 3600,
+    "batch_processing": true,
+    "batch_size": 32,
+    "parallel_processing": true,
+    "max_workers": 4,
+    "memory_limit": "4GB"
+  },
+  "security": {
+    "encryption_enabled": false,
+    "api_key_required": false,
+    "rate_limiting": false,
+    "max_requests_per_minute": 100,
+    "tenant_isolation": true,
+    "audit_logging": true
+  },
+  "monitoring": {
+    "metrics_enabled": true,
+    "health_check_interval": 60,
+    "performance_metrics": true,
+    "error_metrics": true,
+    "usage_analytics": true,
+    "alert_thresholds": {
+      "error_rate": 0.05,
+      "response_time": 5.0,
+      "memory_usage": 0.8
+    }
+  },
+  "data": {
+    "corpora_directory": "./data/corpora",
+    "models_directory": "./data/models",
+    "exports_directory": "./data/exports",
+    "temp_directory": "./data/temp",
+    "auto_cleanup": true,
+    "cleanup_interval": 86400,
+    "max_temp_age": 3600
+  },
+  "features": {
+    "multi_tenant": true,
+    "profile_management": true,
+    "real_time_feedback": true,
+    "batch_generation": true,
+    "export_capabilities": true,
+    "analytics_dashboard": false,
+    "advanced_metrics": false
+  },
+  "experimental": {
+    "reinforcement_learning": false,
+    "transformer_models": false,
+    "advanced_nlp": false,
+    "multilingual_support": false,
+    "voice_generation": false
+  }
+}

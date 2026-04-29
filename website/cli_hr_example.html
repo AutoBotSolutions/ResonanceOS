@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cli_hr_example.py - ResonanceOS v6 Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .code-block {
+            background: rgba(22, 33, 62, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .cli-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .feature-title {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .command-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(22, 33, 62, 0.5);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .flow-step {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 350px;
+        }
+        
+        .step-title {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .flow-arrow {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .cli-commands {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .command-examples {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--success-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-primary);
+        }
+        
+        .parameter-reference {
+            background: rgba(255, 0, 255, 0.05);
+            border: 1px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .param-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .param-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .param-name {
+            font-family: 'Space Mono', monospace;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .param-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .integration-patterns {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid var(--warning-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .pattern-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--warning-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .pattern-icon {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--warning-color);
+            margin-bottom: 15px;
+        }
+        
+        .pattern-name {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .pattern-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .output-examples {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .output-display {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background"></div>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="neural-logo">
+                    <div class="core"></div>
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h1 class="main-title">CLI_<span class="highlight">HR_EXAMPLE.PY</span></h1>
+            </div>
+            <div class="subtitle">Command-Line Interface Integration Example</div>
+            <div class="version-tag">CLI EXAMPLE v1.0</div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb">← Return to Neural Interface</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="module-overview">
+                <h2 class="section-title">CLI Integration Thesis</h2>
+                <div class="thesis-content">
+                    <p class="thesis-intro">
+                        The <strong>cli_hr_example.py</strong> module demonstrates how to integrate with ResonanceOS v6 through the command-line interface 
+                        using Python's subprocess module. This example shows how to programmatically execute the HR main CLI script with 
+                        specific parameters including prompts, tenant identifiers, and profile selections - providing a straightforward 
+                        method for integrating ResonanceOS CLI capabilities into existing Python applications, automation scripts, 
+                        and workflow systems without requiring direct API access or complex integration patterns.
+                    </p>
+                    
+                    <div class="tech-specs">
+                        <h3>Technical Specifications</h3>
+                        <ul>
+                            <li><strong>Method:</strong> Subprocess Execution</li>
+                            <li><strong>Target:</strong> hr_main.py CLI script</li>
+                            <li><strong>Parameters:</strong> Prompt, Tenant, Profile</li>
+                            <li><strong>Integration:</strong> Python subprocess.run()</li>
+                            <li><strong>Use Case:</strong> CLI automation and scripting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="core-implementation">
+                <h2 class="section-title">Core Implementation</h2>
+                
+                <div class="code-block">
+<span class="keyword">import</span> subprocess
+
+subprocess.run([
+    <span class="string-literal">"python"</span>, <span class="string-literal">"resonance_os/cli/hr_main.py"</span>,
+    <span class="string-literal">"--prompt"</span>, <span class="string-literal">"Write a compelling AI article about resonance tone"</span>,
+    <span class="string-literal">"--tenant"</span>, <span class="string-literal">"default"</span>,
+    <span class="string-literal">"--profile"</span>, <span class="string-literal">"brand_identity_v1"</span>
+])
+                </div>
+
+                <div class="cli-features">
+                    <div class="feature-card">
+                        <div class="feature-title">Subprocess Integration</div>
+                        <div class="feature-desc">
+                            Execute CLI commands programmatically from Python applications
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Parameter Configuration</div>
+                        <div class="feature-desc">
+                            Pass prompts, tenants, and profiles to control generation behavior
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Workflow Automation</div>
+                        <div class="feature-desc">
+                            Integrate into existing automation and batch processing systems
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">Simple Integration</div>
+                        <div class="feature-desc">
+                            Minimal setup required for CLI-based content generation
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="command-flow">
+                <h2 class="section-title">CLI Execution Flow</h2>
+                
+                <div class="command-flow">
+                    <div class="flow-step">
+                        <div class="step-title">1. Subprocess Call</div>
+                        <div class="step-desc">Python subprocess.run() executes CLI script</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-title">2. Parameter Parsing</div>
+                        <div class="step-desc">CLI parses prompt, tenant, and profile arguments</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-title">3. Content Generation</div>
+                        <div class="step-desc">ResonanceOS generates content with specified profile</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-title">4. Output Return</div>
+                        <div class="step-desc">Generated content and HRV feedback returned to caller</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cli-commands">
+                <h2 class="section-title">CLI Command Structure</h2>
+                
+                <div class="cli-commands">
+                    <h3>Command Syntax and Parameters</h3>
+                    <div class="command-examples">
+                        <h4>Basic Command Structure</h4>
+                        <pre>
+python resonance_os/cli/hr_main.py --prompt "PROMPT_TEXT" --tenant "TENANT_ID" --profile "PROFILE_NAME"
+                        </pre>
+                    </div>
+
+                    <div class="command-examples">
+                        <h4>Example Implementations</h4>
+                        <pre>
+# Basic content generation
+subprocess.run([
+    "python", "resonance_os/cli/hr_main.py",
+    "--prompt", "Write a compelling AI article about resonance tone",
+    "--tenant", "default",
+    "--profile", "brand_identity_v1"
+])
+
+# Multi-tenant content generation
+subprocess.run([
+    "python", "resonance_os/cli/hr_main.py",
+    "--prompt", "Technical documentation for API integration",
+    "--tenant", "tech_corp",
+    "--profile", "technical_academic"
+])
+
+# Creative content generation
+subprocess.run([
+    "python", "resonance_os/cli/hr_main.py",
+    "--prompt", "A story about AI discovering human emotions",
+    "--tenant", "creative_studio",
+    "--profile", "creative_storytelling"
+])
+                        </pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="parameter-reference">
+                <h2 class="section-title">Parameter Reference</h2>
+                
+                <div class="parameter-reference">
+                    <h3>CLI Parameters</h3>
+                    <div class="param-grid">
+                        <div class="param-item">
+                            <div class="param-name">--prompt</div>
+                            <div class="param-desc">The text prompt for content generation. Required parameter that defines what content to generate.</div>
+                        </div>
+                        <div class="param-item">
+                            <div class="param-name">--tenant</div>
+                            <div class="param-desc">Tenant identifier for multi-tenant environments. Determines which tenant's profiles and settings to use.</div>
+                        </div>
+                        <div class="param-item">
+                            <div class="param-name">--profile</div>
+                            <div class="param-desc">Profile name that defines the writing style and HRV characteristics for content generation.</div>
+                        </div>
+                        <div class="param-item">
+                            <div class="param-name">--output</div>
+                            <div class="param-desc">Optional output file path to save generated content instead of printing to stdout.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="integration-patterns">
+                <h2 class="section-title">Integration Patterns</h2>
+                
+                <div class="integration-patterns">
+                    <h3>Common Integration Use Cases</h3>
+                    <div class="pattern-grid">
+                        <div class="pattern-card">
+                            <div class="pattern-icon">�</div>
+                            <div class="pattern-name">Batch Processing</div>
+                            <div class="pattern-desc">Process multiple prompts in sequence</div>
+                        </div>
+                        <div class="pattern-card">
+                            <div class="pattern-icon">⚡</div>
+                            <div class="pattern-name">Workflow Automation</div>
+                            <div class="pattern-desc">Integrate into CI/CD pipelines</div>
+                        </div>
+                        <div class="pattern-card">
+                            <div class="pattern-icon">📈</div>
+                            <div class="pattern-name">Content Pipeline</div>
+                            <div class="pattern-desc">Automated content generation workflows</div>
+                        </div>
+                        <div class="pattern-card">
+                            <div class="pattern-icon">⚙️</div>
+                            <div class="pattern-name">System Integration</div>
+                            <div class="pattern-desc">Embed in existing Python applications</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="advanced-usage">
+                <h2 class="section-title">Advanced Usage Examples</h2>
+                
+                <div class="advanced-examples">
+                    <h3>Enhanced Integration Patterns</h3>
+                    <div class="code-block">
+<span class="keyword">import</span> subprocess
+<span class="keyword">import</span> json
+<span class="keyword">from</span> pathlib <span class="keyword">import</span> Path
+
+<span class="keyword">def</span> generate_content_cli(prompt, tenant=<span class="string-literal">"default"</span>, profile=<span class="string-literal">"neutral_professional"</span>, output_file=<span class="keyword">None</span>):
+    <span class="string-literal">"""Generate content using CLI interface"""</span>
+    
+    <span class="comment"># Build command</span>
+    command = [
+        <span class="string-literal">"python"</span>, <span class="string-literal">"resonance_os/cli/hr_main.py"</span>,
+        <span class="string-literal">"--prompt"</span>, prompt,
+        <span class="string-literal">"--tenant"</span>, tenant,
+        <span class="string-literal">"--profile"</span>, profile
+    ]
+    
+    <span class="keyword">if</span> output_file:
+        command.extend([<span class="string-literal">"--output"</span>, output_file])
+    
+    <span class="keyword">try</span>:
+        <span class="comment"># Execute command</span>
+        result = subprocess.run(
+            command,
+            capture_output=<span class="keyword">True</span>,
+            text=<span class="keyword">True</span>,
+            timeout=<span class="number">60</span>
+        )
+        
+        <span class="keyword">if</span> result.returncode == <span class="number">0</span>:
+            <span class="keyword">return</span> {
+                <span class="string-literal">"success"</span>: <span class="keyword">True</span>,
+                <span class="string-literal">"output"</span>: result.stdout,
+                <span class="string-literal">"error"</span>: result.stderr
+            }
+        <span class="keyword">else</span>:
+            <span class="keyword">return</span> {
+                <span class="string-literal">"success"</span>: <span class="keyword">False</span>,
+                <span class="string-literal">"error"</span>: result.stderr,
+                <span class="string-literal">"return_code"</span>: result.returncode
+            }
+    <span class="keyword">except</span> subprocess.TimeoutExpired:
+        <span class="keyword">return</span> {
+            <span class="string-literal">"success"</span>: <span class="keyword">False</span>,
+            <span class="string-literal">"error"</span>: <span class="string-literal">"Command timed out"</span>
+        }
+    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+        <span class="keyword">return</span> {
+            <span class="string-literal">"success"</span>: <span class="keyword">False</span>,
+            <span class="string-literal">"error"</span>: <span class="keyword">str</span>(e)
+        }
+
+<span class="comment"># Batch processing example</span>
+<span class="keyword">def</span> batch_generate_cli(prompts, tenant=<span class="string-literal">"default"</span>, profile=<span class="string-literal">"neutral_professional"</span>):
+    <span class="string-literal">"""Generate content for multiple prompts"""</span>
+    results = []
+    
+    <span class="keyword">for</span> i, prompt <span class="keyword">in</span> enumerate(prompts, <span class="number">1</span>):
+        print(<span class="keyword">f</span><span class="string-literal">"Processing prompt {i}/{len(prompts)}: {prompt[:50]}..."</span>)
+        
+        result = generate_content_cli(prompt, tenant, profile)
+        results.append({
+            <span class="string-literal">"prompt"</span>: prompt,
+            <span class="string-literal">"result"</span>: result
+        })
+        
+        <span class="keyword">if</span> result[<span class="string-literal">"success"</span>]:
+            print(<span class="string-literal">"✅ Generation successful"</span>)
+        <span class="keyword">else</span>:
+            print(<span class="keyword">f</span><span class="string-literal">"❌ Generation failed: {result['error']}"</span>)
+    
+    <span class="keyword">return</span> results
+
+<span class="comment"># Usage example</span>
+prompts = [
+    <span class="string-literal">"The future of AI in healthcare"</span>,
+    <span class="string-literal">"Sustainable technology solutions"</span>,
+    <span class="string-literal">"Digital transformation strategies"</span>
+]
+
+batch_results = batch_generate_cli(prompts, <span class="string-literal">"tech_corp"</span>, <span class="string-literal">"technical_academic"</span>)
+                    </div>
+                </div>
+            </section>
+
+            <section class="output-examples">
+                <h2 class="section-title">Output Examples</h2>
+                
+                <div class="output-examples">
+                    <h3>CLI Output Format</h3>
+                    <div class="output-display">
+                        <h4>Standard Output Example</h4>
+                        <pre>
+▶️ ResonanceOS v6 - Human-Resonant Content Generation
+============================================================
+
+Processing prompt: "Write a compelling AI article about resonance tone"
+Tenant: default
+Profile: brand_identity_v1
+
+📃 Generated Content:
+The concept of resonance tone in artificial intelligence represents a fundamental shift in how we approach content generation and human-computer interaction. By analyzing the subtle patterns of human communication and cognitive engagement, AI systems can now create content that truly resonates with readers on both conscious and subconscious levels...
+
+📈 HRV Feedback: 0.734
+📈 Quality Score: Good
+⏱️ Generation Time: 2.34s
+
+✅ Content generation completed successfully!
+                        </pre>
+                    </div>
+
+                    <div class="output-display">
+                        <h4>Error Output Example</h4>
+                        <pre>
+❌ Error: Profile 'invalid_profile' not found for tenant 'default'
+Available profiles: neutral_professional, creative_storyteller, technical_academic
+
+💡 Usage: python resonance_os/cli/hr_main.py --prompt "PROMPT" --tenant "TENANT" --profile "PROFILE"
+                        </pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="technical-thesis">
+                <h2 class="section-title">Technical Implementation Thesis</h2>
+                <div class="thesis-content">
+                    <p>
+                        The <strong>cli_hr_example.py</strong> module demonstrates a practical approach to integrating ResonanceOS v6 capabilities 
+                        through the command-line interface using Python's subprocess module. This integration method provides a 
+                        straightforward way to incorporate ResonanceOS functionality into existing Python applications, automation scripts, 
+                        and workflow systems without requiring complex API integration or direct library dependencies. The approach is 
+                        particularly valuable for scenarios where CLI-based integration is preferred, such as in legacy systems, 
+                        batch processing environments, or when working with existing automation frameworks.
+                    </p>
+                    
+                    <h3>Integration Philosophy</h3>
+                    <ul>
+                        <li><strong>Simplicity:</strong> Minimal code for CLI integration</li>
+                        <li><strong>Flexibility:</strong> Works with any CLI-compatible environment</li>
+                        <li><strong>Reliability:</strong> Leverages existing CLI functionality</li>
+                        <li><strong>Compatibility:</strong> No additional dependencies beyond subprocess</li>
+                    </ul>
+                    
+                    <h3>Use Case Benefits</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <h4>Workflow Integration</h4>
+                            <p>Easy integration into existing automation and CI/CD pipelines.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Batch Processing</h4>
+                            <p>Efficient processing of multiple content generation requests.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>System Compatibility</h4>
+                            <p>Works with any system that can execute CLI commands.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Testing & Development</h4>
+                            <p>Quick prototyping and testing of ResonanceOS capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="module-footer">
+            <div class="footer-nav">
+                <a href="api_hr_example.html" class="footer-link">← API HR Example</a>
+                <a href="sitemap.html" class="footer-link">Site Map →</a>
+            </div>
+            <div class="footer-info">
+                <p>cli_hr_example.py - ResonanceOS v6 Command-Line Interface Integration Example</p>
+                <p>Module Status: <span class="status-online">● OPERATIONAL</span> | Last Validated: 2026.03.09</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

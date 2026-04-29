@@ -1,0 +1,83 @@
+{
+  "name": "creative_storytelling",
+  "version": "1.0",
+  "description": "Creative and narrative-focused profile ideal for storytelling, creative writing, and engaging content",
+  "target_hrv": [0.8, 0.5, 0.7, 0.4, 0.8, 0.8, 0.9, 0.6],
+  "metadata": {
+    "created_at": "2026-03-09T12:16:00Z",
+    "created_by": "system",
+    "updated_at": "2026-03-09T12:16:00Z",
+    "tags": ["creative", "storytelling", "narrative", "engaging"],
+    "use_case": "Creative writing and storytelling",
+    "target_audience": "General audience, readers",
+    "content_types": ["stories", "articles", "blog posts", "creative content"],
+    "emotional_tone": "Expressive and imaginative",
+    "complexity_level": "Medium-High",
+    "formality_level": "Informal to Semi-Formal"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "value": 0.8,
+      "description": "High variety in sentence structure for creative flow",
+      "target_range": "0.7-0.9"
+    },
+    "emotional_valence": {
+      "value": 0.5,
+      "description": "Balanced emotional tone allowing for range",
+      "target_range": "0.4-0.6"
+    },
+    "emotional_intensity": {
+      "value": 0.7,
+      "description": "Strong emotional engagement for storytelling",
+      "target_range": "0.6-0.8"
+    },
+    "assertiveness_index": {
+      "value": 0.4,
+      "description": "Moderate assertiveness for narrative flexibility",
+      "target_range": "0.3-0.5"
+    },
+    "curiosity_index": {
+      "value": 0.8,
+      "description": "High curiosity elements to engage readers",
+      "target_range": "0.7-0.9"
+    },
+    "metaphor_density": {
+      "value": 0.8,
+      "description": "Rich use of metaphors and figurative language",
+      "target_range": "0.7-0.9"
+    },
+    "storytelling_index": {
+      "value": 0.9,
+      "description": "Maximum narrative and storytelling elements",
+      "target_range": "0.8-1.0"
+    },
+    "active_voice_ratio": {
+      "value": 0.6,
+      "description": "Balanced active/passive voice for narrative effect",
+      "target_range": "0.5-0.7"
+    }
+  },
+  "generation_guidelines": {
+    "sentence_length": {
+      "average": "12-18 words",
+      "range": "5-40 words"
+    },
+    "paragraph_length": {
+      "average": "4-6 sentences",
+      "range": "2-10 sentences"
+    },
+    "vocabulary": "Rich and varied with creative elements",
+    "tone": "Imaginative and engaging",
+    "style": "Flowing, descriptive, and narrative-driven"
+  },
+  "quality_metrics": {
+    "readability_score": "Target: 50-65 (Flesch-Kincaid)",
+    "engagement_rate": "Target: 85-95%",
+    "completion_rate": "Target: 75-85%"
+  },
+  "compatibility": {
+    "resonance_os_version": "v6.0+",
+    "api_version": "1.0+",
+    "dependencies": []
+  }
+}

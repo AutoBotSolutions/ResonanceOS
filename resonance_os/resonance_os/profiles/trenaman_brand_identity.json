@@ -1,0 +1,72 @@
+{
+  "name": "Trenaman Resonance Signature v1.0",
+  "description": "Brand identity profile for Trenaman's architectural AI writing style",
+  "resonance_vector": {
+    "values": [0.85, 0.78, 0.72, 0.68, 0.75, 0.82, 0.79, 0.71, 0.77, 0.73],
+    "dimensions": [
+      "lexical_density",
+      "emotional_valence", 
+      "cadence_variability",
+      "sentence_entropy",
+      "metaphor_frequency",
+      "abstraction_level",
+      "assertiveness_score",
+      "rhythm_signature",
+      "narrative_intensity_curve",
+      "cognitive_load_index"
+    ],
+    "confidence": 0.92,
+    "created_at": "2024-01-01T00:00:00"
+  },
+  "emotional_curve": [0.6, 0.7, 0.8, 0.75, 0.65],
+  "cadence_pattern": [0.4, 0.6, 0.8, 0.7],
+  "abstraction_preference": 0.75,
+  "metadata": {
+    "description": "Trenaman's signature architectural AI writing style characterized by high abstraction, strategic framing, and escalating momentum",
+    "industry": "technology",
+    "target_audience": "technical professionals",
+    "tone_guidelines": [
+      "High abstraction with concrete grounding",
+      "Strategic architectural framing",
+      "Multi-layer breakdown structure",
+      "Declarative intensity",
+      "Escalating narrative momentum",
+      "Technical precision with visionary language"
+    ],
+    "style_characteristics": {
+      "lexical_density": "High - Dense technical terminology balanced with accessibility",
+      "emotional_valence": "Positive-confident - Professional enthusiasm for innovation",
+      "cadence_variability": "Moderate - Structured variation for readability",
+      "sentence_entropy": "Medium-high - Varied sentence structures",
+      "metaphor_frequency": "Moderate - Architectural and system metaphors",
+      "abstraction_level": "High - Conceptual frameworks with practical applications",
+      "assertiveness_score": "High - Confident declarative statements",
+      "rhythm_signature": "Building - Progressive intensity",
+      "narrative_intensity_curve": "Rising-climax-resolve - Classic technical exposition",
+      "cognitive_load_index": "Medium-high - Challenging but accessible content"
+    },
+    "brand_voice_attributes": {
+      "primary": "Innovative",
+      "secondary": "Authoritative",
+      "tertiary": "Visionary",
+      "forbidden": ["Casual", "Informal", "Simplistic"],
+      "preferred_vocabulary": ["architecture", "system", "framework", "evolution", "paradigm", "synergy"],
+      "sentence_patterns": ["Complex compound", "Parallel structures", "Cascading detail"]
+    },
+    "content_guidelines": {
+      "opening_strategy": "Start with high-level vision, then systematically break down",
+      "body_structure": "Multi-layered with clear section hierarchy",
+      "closing_approach": "Synthesize with forward-looking implications",
+      "transition_style": "Explicit signposting with logical connectors",
+      "technical_depth": "Advanced concepts explained through architectural metaphors"
+    },
+    "quality_metrics": {
+      "target_readability_score": 0.75,
+      "min_technical_accuracy": 0.95,
+      "required_originality": 0.90,
+      "preferred_complexity": "High"
+    }
+  },
+  "created_at": "2024-01-01T00:00:00",
+  "updated_at": "2024-01-01T00:00:00"
+}

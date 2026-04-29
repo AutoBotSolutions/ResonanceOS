@@ -1,0 +1,83 @@
+{
+  "name": "tech_startup",
+  "version": "1.0",
+  "description": "Technology and innovation focused profile for startups, tech companies, and digital products",
+  "target_hrv": [0.5, 0.4, 0.5, 0.8, 0.6, 0.4, 0.5, 0.9],
+  "metadata": {
+    "created_at": "2026-03-09T12:16:00Z",
+    "created_by": "system",
+    "updated_at": "2026-03-09T12:16:00Z",
+    "tags": ["technology", "startup", "innovation", "technical"],
+    "use_case": "Technology documentation and startup content",
+    "target_audience": "Tech professionals, investors, developers",
+    "content_types": ["technical docs", "product descriptions", "investor pitches", "api documentation"],
+    "emotional_tone": "Innovative and confident",
+    "complexity_level": "Medium-High",
+    "formality_level": "Semi-Formal to Formal"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "value": 0.5,
+      "description": "Moderate sentence variety for technical clarity",
+      "target_range": "0.4-0.6"
+    },
+    "emotional_valence": {
+      "value": 0.4,
+      "description": "Optimistic but grounded emotional tone",
+      "target_range": "0.3-0.5"
+    },
+    "emotional_intensity": {
+      "value": 0.5,
+      "description": "Moderate emotional intensity for balance",
+      "target_range": "0.4-0.6"
+    },
+    "assertiveness_index": {
+      "value": 0.8,
+      "description": "High confidence and authority in tech domain",
+      "target_range": "0.7-0.9"
+    },
+    "curiosity_index": {
+      "value": 0.6,
+      "description": "Strong curiosity about innovation and solutions",
+      "target_range": "0.5-0.7"
+    },
+    "metaphor_density": {
+      "value": 0.4,
+      "description": "Limited metaphors for technical precision",
+      "target_range": "0.3-0.5"
+    },
+    "storytelling_index": {
+      "value": 0.5,
+      "description": "Moderate narrative for product stories",
+      "target_range": "0.4-0.6"
+    },
+    "active_voice_ratio": {
+      "value": 0.9,
+      "description": "Very high active voice for direct technical communication",
+      "target_range": "0.8-1.0"
+    }
+  },
+  "generation_guidelines": {
+    "sentence_length": {
+      "average": "15-22 words",
+      "range": "8-35 words"
+    },
+    "paragraph_length": {
+      "average": "3-5 sentences",
+      "range": "2-7 sentences"
+    },
+    "vocabulary": "Technical but accessible with industry terms",
+    "tone": "Innovative and authoritative",
+    "style": "Precise, clear, and forward-looking"
+  },
+  "quality_metrics": {
+    "readability_score": "Target: 55-70 (Flesch-Kincaid)",
+    "engagement_rate": "Target: 65-75%",
+    "completion_rate": "Target: 80-90%"
+  },
+  "compatibility": {
+    "resonance_os_version": "v6.0+",
+    "api_version": "1.0+",
+    "dependencies": []
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ResonanceOS HRV Profile Schema",
+  "description": "Schema for Human-Resonant Value (HRV) profiles in ResonanceOS v6",
+  "type": "object",
+  "required": ["name", "description", "hrv_vector"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique name identifier for the profile",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9_\\-\\s]+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the profile's purpose and characteristics",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "hrv_vector": {
+      "type": "array",
+      "description": "8-dimensional Human-Resonant Value vector",
+      "items": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      },
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata about the profile",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when profile was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when profile was last updated"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$",
+          "description": "Profile version in semantic versioning format"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Creator of the profile (user or system)"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["business", "creative", "academic", "marketing", "support", "journalism", "education", "sales", "technical", "personal"],
+          "description": "Category classification of the profile"
+        },
+        "formality": {
+          "type": "string",
+          "enum": ["formal", "semi-formal", "business", "casual", "informal"],
+          "description": "Formality level of the profile"
+        },
+        "use_cases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of appropriate use cases for this profile"
+        },
+        "target_audience": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Intended target audience for content using this profile"
+        },
+        "brand_personality": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Brand personality traits associated with this profile"
+        },
+        "tone_guidelines": {
+          "type": "object",
+          "properties": {
+            "vocabulary": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Preferred vocabulary words and phrases"
+            },
+            "sentence_style": {
+              "type": "string",
+              "description": "Description of preferred sentence style"
+            },
+            "emotional_tone": {
+              "type": "string",
+              "description": "Desired emotional tone for content"
+            },
+            "persuasion_level": {
+              "type": "string",
+              "enum": ["low", "moderate", "high", "very_high"],
+              "description": "Level of persuasion in content"
+            }
+          }
+        },
+        "examples": {
+          "type": "object",
+          "properties": {
+            "mission_statement": {
+              "type": "string",
+              "description": "Example mission statement using this profile"
+            },
+            "product_description": {
+              "type": "string",
+              "description": "Example product description using this profile"
+            },
+            "investor_pitch": {
+              "type": "string",
+              "description": "Example investor pitch using this profile"
+            },
+            "customer_communication": {
+              "type": "string",
+              "description": "Example customer communication using this profile"
+            }
+          }
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "avoid": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Words, phrases, or styles to avoid"
+            },
+            "prefer": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Words, phrases, or styles to prefer"
+            },
+            "readability_level": {
+              "type": "string",
+              "enum": ["elementary", "middle_school", "high_school", "college", "graduate"],
+              "description": "Target readability level"
+            },
+            "average_sentence_length": {
+              "type": "string",
+              "pattern": "^\\d+-\\d+$",
+              "description": "Preferred average sentence length range (min-max)"
+            }
+          }
+        },
+        "adaptation_rules": {
+          "type": "object",
+          "description": "Rules for adapting the profile to different contexts",
+          "patternProperties": {
+            ".*": {
+              "type": "object",
+              "properties": {
+                "adjustments": {
+                  "type": "object",
+                  "patternProperties": {
+                    "sentence_variance|emotional_valence|emotional_intensity|assertiveness_index|curiosity_index|metaphor_density|storytelling_index|active_voice_ratio": {
+                    "type": "number",
+                      "minimum": -1.0,
+                      "maximum": 1.0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for categorizing and searching profiles"
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenant or organization that owns this profile"
+        },
+        "is_active": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this profile is currently active"
+        },
+        "is_default": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this is the default profile for its category"
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "name": "Professional Business",
+      "description": "Balanced, professional tone suitable for business communications",
+      "hrv_vector": [0.5, 0.0, 0.3, 0.6, 0.4, 0.2, 0.3, 0.7],
+      "metadata": {
+        "category": "business",
+        "formality": "professional",
+        "use_cases": ["reports", "emails", "documentation"],
+        "target_audience": ["business_professionals", "executives", "clients"],
+        "brand_personality": ["professional", "reliable", "authoritative"],
+        "tone_guidelines": {
+          "vocabulary": ["strategic", "optimize", "leverage", "synergy"],
+          "sentence_style": "clear and direct",
+          "emotional_tone": "neutral to slightly positive",
+          "persuasion_level": "moderate"
+        },
+        "created_at": "2026-03-09T00:00:00Z",
+        "updated_at": "2026-03-09T00:00:00Z",
+        "version": "1.0",
+        "created_by": "ResonanceOS v6",
+        "tags": ["business", "professional", "corporate"]
+      }
+    }
+  ]
+}

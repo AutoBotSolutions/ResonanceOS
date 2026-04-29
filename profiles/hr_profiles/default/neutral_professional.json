@@ -1,0 +1,83 @@
+{
+  "name": "neutral_professional",
+  "version": "1.0",
+  "description": "Balanced professional tone suitable for business documents, reports, and formal communications",
+  "target_hrv": [0.6, 0.3, 0.4, 0.7, 0.5, 0.3, 0.4, 0.8],
+  "metadata": {
+    "created_at": "2026-03-09T12:16:00Z",
+    "created_by": "system",
+    "updated_at": "2026-03-09T12:16:00Z",
+    "tags": ["professional", "business", "formal", "balanced"],
+    "use_case": "Business documentation and reports",
+    "target_audience": "Professionals and executives",
+    "content_types": ["reports", "documentation", "emails", "proposals"],
+    "emotional_tone": "Neutral and authoritative",
+    "complexity_level": "Medium",
+    "formality_level": "Formal"
+  },
+  "hrv_dimensions": {
+    "sentence_variance": {
+      "value": 0.6,
+      "description": "Moderate variety in sentence structure for readability",
+      "target_range": "0.5-0.7"
+    },
+    "emotional_valence": {
+      "value": 0.3,
+      "description": "Slightly positive tone without being overly emotional",
+      "target_range": "0.2-0.4"
+    },
+    "emotional_intensity": {
+      "value": 0.4,
+      "description": "Moderate emotional engagement for professional content",
+      "target_range": "0.3-0.5"
+    },
+    "assertiveness_index": {
+      "value": 0.7,
+      "description": "Confident and direct communication style",
+      "target_range": "0.6-0.8"
+    },
+    "curiosity_index": {
+      "value": 0.5,
+      "description": "Balanced use of questions and exploratory elements",
+      "target_range": "0.4-0.6"
+    },
+    "metaphor_density": {
+      "value": 0.3,
+      "description": "Limited use of metaphors for professional clarity",
+      "target_range": "0.2-0.4"
+    },
+    "storytelling_index": {
+      "value": 0.4,
+      "description": "Moderate narrative elements for engagement",
+      "target_range": "0.3-0.5"
+    },
+    "active_voice_ratio": {
+      "value": 0.8,
+      "description": "High active voice usage for direct communication",
+      "target_range": "0.7-0.9"
+    }
+  },
+  "generation_guidelines": {
+    "sentence_length": {
+      "average": "15-20 words",
+      "range": "8-30 words"
+    },
+    "paragraph_length": {
+      "average": "3-5 sentences",
+      "range": "2-7 sentences"
+    },
+    "vocabulary": "Professional but accessible",
+    "tone": "Authoritative yet approachable",
+    "style": "Clear, concise, and structured"
+  },
+  "quality_metrics": {
+    "readability_score": "Target: 60-70 (Flesch-Kincaid)",
+    "engagement_rate": "Target: 70-80%",
+    "completion_rate": "Target: 85-90%"
+  },
+  "compatibility": {
+    "resonance_os_version": "v6.0+",
+    "api_version": "1.0+",
+    "dependencies": []
+  }
+}
